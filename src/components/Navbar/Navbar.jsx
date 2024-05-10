@@ -9,7 +9,7 @@ function NavbarComp() {
     return (
         <>
             <br />
-            <Navbar className="bg-body-tertiary">
+            <Navbar className="bg-body-tertiary rounded-navbar" >
                 <Container>
                     <Sidebar />
                     <Navbar.Brand>
