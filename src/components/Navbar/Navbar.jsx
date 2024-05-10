@@ -1,30 +1,33 @@
 import './Navbar.css';
-import '../../assets/navIcon.png'
 import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
+import Sidebar from '../Sidebar/Sidebar';
 
-function BrandExample() {
+function NavbarComp() {
     return (
         <>
             <br />
             <Navbar className="bg-body-tertiary">
                 <Container>
-                    <Button variant="link" className="border-0">TESTESTESTESTEST</Button>
-                    <Navbar.Brand href="/">
-                        <img
-                            alt=""
-                            src="https://em-content.zobj.net/source/apple/325/headphone_1f3a7.png" // Test
-                            width="30"
-                            height="30"
-                            className="d-inline-block align-top"
-                        />{' '}
-                        HackTracks
+                    <Sidebar />
+                    <Navbar.Brand>
+                        <Link to="/">
+                            <img
+                                alt=""
+                                src="https://em-content.zobj.net/source/apple/325/headphone_1f3a7.png" // Test
+                                width="30"
+                                height="30"
+                                className="d-inline-block align-top"
+                            />
+                            DROP HIT
+                        </Link>
                     </Navbar.Brand>
                     <Navbar.Collapse className="justify-content-end">
-                        <Button variant="outline-primary" className="me-2">♥︎</Button>
-                        <Button variant="primary" className="rounded-circle">✚</Button>
+                        <Link to="/add-track">
+                            <Button variant="primary" className="rounded-circle">✚</Button>
+                        </Link>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
@@ -32,4 +35,4 @@ function BrandExample() {
     );
 }
 
-export default BrandExample;
+export default NavbarComp;

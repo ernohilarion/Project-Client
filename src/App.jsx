@@ -1,7 +1,6 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Navbar from './components/Navbar/Navbar'
-import Sidebar from './components/Sidebar/Sidebar'
+import NavbarComp from './components/Navbar/Navbar'
 import Footer from './components/Footer/Footer'
 import HomePage from './pages/HomePage/HomePage'
 import AddTrackPage from './pages/AddTrackPage/AddTrackPage'
@@ -18,8 +17,7 @@ function App() {
   return (
     <div className='App'>
 
-      <Navbar />
-      <Sidebar />
+      <NavbarComp />
 
       <Routes>
         <Route path='/' element={<HomePage />} />

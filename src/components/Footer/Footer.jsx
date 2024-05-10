@@ -5,7 +5,7 @@ import Nav from 'react-bootstrap/Nav';
 function AlignmentExample() {
     return (
         <>
-            <p className="text-center mt-4 mb-4">Todos los derechos reservados ©</p>
+            <p className="text-center mt-4 mb-4">All rights reserved ©</p>
         </>
     );
 }

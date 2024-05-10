@@ -2,6 +2,7 @@ import AboutUsPage from '../../pages/AboutUsPage/AboutUsPage'
 import AllTracksPage from '../../pages/AllTracksPage/AllTracksPage'
 import LikedTracksPage from '../../pages/LikedTracksPage/LikedTracksPage'
 import './Sidebar.css'
+import navIcon from '../../assets/navIcon.png'
 import { Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
@@ -14,13 +15,13 @@ const Sidebar = () => {
     const handleShow = () => setShow(true);
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
-                Launch
+            <Button variant="translucent" onClick={handleShow}>
+                <img src={navIcon} alt='Navicon' className='navIcon' />
             </Button>
 
             <Offcanvas show={show} onHide={handleClose}>
                 <Offcanvas.Header closeButton>
-                    <Offcanvas.Title>HACK TRACKS</Offcanvas.Title>
+                    <Offcanvas.Title>DROP HIT</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     <ul>
