@@ -26,13 +26,17 @@ function AllTracksPage() {
             <br />
             {tracks.map((track) => {
                 return (
-                    <Link to={`/details-track/${track.id}`}>
-                        <div className='TrackCard card' key={track.id}>
+                    <Link to={`/details-track/${track.id}`} key={track.id}>
+                        <div className='TrackCard'>
+                            <img src={track.cover} alt={track.title} />
+                            <br />
+                            <br />
                             <h3>{track.title}</h3>
                             <h4>{track.artist}</h4>
                             <h6>{track.album}</h6>
-                            <img src={track.cover} alt={track.title}></img>
-                        </div></Link>
+                            <hr />
+                        </div>
+                    </Link>
                 )
             })}
         </div>

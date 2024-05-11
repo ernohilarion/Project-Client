@@ -25,7 +25,7 @@ function App() {
         <Route path='/all-tracks' element={<AllTracksPage />} />
         <Route path='/edit-track' element={<EditTrackPage />} />
         <Route path='/liked-tracks' element={<LikedTracksPage />} />
-        <Route path='/details-track' element={<DetailsTracksPage />} />
+        <Route path='/details-track/:trackId' element={<DetailsTracksPage />} />
         <Route path='/about-us' element={<AboutUsPage />} />
         <Route path='*' element={<ErrorPage />} />
 

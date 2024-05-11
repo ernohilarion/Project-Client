@@ -1,11 +1,10 @@
 import './TrackDetailsPage.css'
-import SOKOBAN from '../../assets/SOKOBAN.png'
 import { Container, Button, Card, Row, Col } from "react-bootstrap"
 import { useState, useEffect } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import axios from "axios"
-//details-track
-const apiURL = "http://localhost:5005/"
+
+const apiURL = "http://localhost:5005/tracks"
 
 function TrackDetailsPage() {
     const [track, setTrack] = useState({})
@@ -15,9 +14,9 @@ function TrackDetailsPage() {
     useEffect(() => {
         const loadTrackDetails = () => {
             axios
-                .get(`${apiURL}`)
-                .then(({ data }) => { setTrack(data) })
-                .catch((error) => { console.log(error) })
+                .get(`${apiURL}/${trackId}`)
+                .then(({ data }) => setTrack(data))
+                .catch((error) => console.log(error))
         }
 
         loadTrackDetails()
@@ -36,7 +35,7 @@ function TrackDetailsPage() {
                 <Row>
                     <Col md={{ span: 6 }}>
                         <Card>
-                            <Card.Img variant="top" src={track.cover} />
+                            <Card.Img variant="top" src={track.cover || ''} />
                             <Card.Body>
                                 <Card.Title>{track.title}</Card.Title>
                                 <Card.Text>{track.description}</Card.Text>
@@ -50,7 +49,7 @@ function TrackDetailsPage() {
             <Link to="/all-tracks">
                 <Button variant="secondary">Back to All the tracks</Button>
             </Link>
-            <Link to={`/tracks/edit/${trackId}`}>
+            <Link to={`/edit-track/${trackId}`}>
                 <Button variant="primary">Edit <em>{track.title}</em></Button>
             </Link>
             <Button variant="danger" onClick={deleteTrack}>Eliminar <em>{track.title}</em></Button>

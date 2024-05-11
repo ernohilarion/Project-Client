@@ -1,0 +1,26 @@
+.about img {
+    width: 100%;
+    object-fit: contain;
+    height: 200px;
+
+}
+
+.about .card {
+    width: 100%;
+    max-width: 540px;
+    margin: 10px auto;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+
+.about .card .list-group-flush {
+    text-align: center;
+    cursor: pointer;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+}
+
+.photo {
+    justify-content: center;
+    display: flex;
+}
