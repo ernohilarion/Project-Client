@@ -50,7 +50,7 @@ function TrackDetailsPage() {
             <Link to="/all-tracks">
                 <Button variant="secondary">Back to All the tracks</Button>
             </Link>
-            <Link to={`/tracks/edit/${trackId}`}>
+            <Link to={`/edit-tracks/${trackId}`}>
                 <Button variant="primary">Edit <em>{track.title}</em></Button>
             </Link>
             <Button variant="danger" onClick={deleteTrack}>Eliminar <em>{track.title}</em></Button>
