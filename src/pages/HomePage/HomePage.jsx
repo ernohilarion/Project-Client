@@ -1,13 +1,16 @@
 import './HomePage.css'
+import coverapp from "./../../assets/coverapp.jpeg"
 
 function HomePage() {
     return (
         <div className='HomePage'>
             <br />
-            <h3>What is DROP HIT?</h3>
+
             <br />
             <br />
-            <p>The best music database website for your company.</p>
+            <marquee direction="left"><h2><strong>DROP HIT</strong></h2></marquee>
+            <img src={coverapp} alt="Cover" />
+
 
         </div>
     )

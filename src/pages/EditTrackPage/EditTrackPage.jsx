@@ -10,7 +10,7 @@ const apiURL = 'http://localhost:5005/tracks'
 
 function EditTrackPage() {
 
-    const navigate = useNavigate()
+
 
     const [trackData, setTrackData] = useState({
         title: " ",
@@ -23,27 +23,60 @@ function EditTrackPage() {
         explicit: " ",
     })
 
-    const { trackId } = useParams()
+    // const { trackId } = useParams()
+
+    // useEffect(() => {
+    //     axios
+    //         .get(`${apiURL}${trackId}`)
+    //         .then(({ data }) => setTrackData(data))
+    //         .catch(err => console.log(err))
+
+    // }, [])
+
+    // const handleInputChange = event => {
+    //     const { name, value } = event.target
+    //     setTrackData({ ...trackData, [name]: value })
+    // }
+
+    // const handleTrackFormSubmit = e => {
+
+    //     e.preventDefault()
+
+    //     axios
+    //         .post(`${apiURL}${trackId}`, trackData)
+    //         .then(() => navigate('/all-tracks'))
+    //         .catch(err => console.log(err))
+    // }
+
+
 
     useEffect(() => {
+        loadFormData()          // 1.- Primero se rellena el form con los datos a editar
+    }, [])
+
+    const { trackId } = useParams()
+
+    const navigate = useNavigate()
+
+    const loadFormData = () => {
         axios
-            .get(`${apiURL}`)
+            .get(`${apiURL}/${trackId}`)
             .then(({ data }) => setTrackData(data))
             .catch(err => console.log(err))
-
-    }, [])
+    }
 
     const handleInputChange = event => {
         const { name, value } = event.target
         setTrackData({ ...trackData, [name]: value })
     }
 
+
     const handleTrackFormSubmit = e => {
 
         e.preventDefault()
 
         axios
-            .post(`${apiURL}`, trackData)
+            .put(`${apiURL}/${trackId}`, trackData)
             .then(() => navigate('/all-tracks'))
             .catch(err => console.log(err))
     }
