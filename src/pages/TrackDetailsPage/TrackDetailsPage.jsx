@@ -5,6 +5,7 @@ import { Link, useNavigate, useParams } from "react-router-dom"
 import axios from "axios"
 
 const apiURL = "http://localhost:5005/tracks"
+const apiURLactions = "http://localhost:5005/tracks"
 
 function TrackDetailsPage() {
     const [track, setTrack] = useState({})
@@ -49,7 +50,7 @@ function TrackDetailsPage() {
             <Link to="/all-tracks">
                 <Button variant="secondary">Back to All the tracks</Button>
             </Link>
-            <Link to={`/edit-track/${trackId}`}>
+            <Link to={`/edit-tracks/${trackId}`}>
                 <Button variant="primary">Edit <em>{track.title}</em></Button>
             </Link>
             <Button variant="danger" onClick={deleteTrack}>Eliminar <em>{track.title}</em></Button>
