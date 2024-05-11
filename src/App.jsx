@@ -23,7 +23,7 @@ function App() {
         <Route path='/' element={<HomePage />} />
         <Route path='/add-track' element={<AddTrackPage />} />
         <Route path='/all-tracks' element={<AllTracksPage />} />
-        <Route path='/edit-track' element={<EditTrackPage />} />
+        <Route path='/edit-tracks/:trackId' element={<EditTrackPage />} />
         <Route path='/liked-tracks' element={<LikedTracksPage />} />
         <Route path='/details-track/:trackId' element={<DetailsTracksPage />} />
         <Route path='/about-us' element={<AboutUsPage />} />
