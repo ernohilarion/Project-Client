@@ -10,7 +10,7 @@ const ErrorPage = () => {
             <article className="error">
                 <img src={SOKOBAN} alt="Error 404" />
                 <div>
-                    <h2>WOW! Something went wrong 😢</h2>
+                    <h4>WOW! Something went wrong 😢</h4>
                     <p>But no problem, it's just a 404 error! We've got you covered—just click below to go back to a safe place.</p>
                     <Link to="/">
                         <Button>

@@ -1,9 +1,11 @@
+import './LikedTracksPage.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './LikedTracksPage.css';
+import { Container, Row, Col } from "react-bootstrap";
+import { Link } from 'react-router-dom';
 
 const apiURL = 'http://localhost:5005/tracks';
-const apiURLactions = 'http://localhost:5005/action'
+const apiURLactions = 'http://localhost:5005/actions';
 
 function LikedTracksPage() {
     const [likedTracks, setLikedTracks] = useState([]);
@@ -14,36 +16,57 @@ function LikedTracksPage() {
 
     const fetchLikedTracks = async () => {
         try {
-
             const actionsResponse = await axios.get(apiURLactions);
-            // Filtrar para obtener solo acciones de 'like'
-            const likedActions = actionsResponse.data.filter(action => action.like);
+            const likedActions = actionsResponse.data.filter(action => action.like === true);
 
-            // Obtener todos los tracks
             const tracksResponse = await axios.get(apiURL);
-            // Filtrar tracks basándose en las acciones de like
             const filteredTracks = tracksResponse.data.filter(track =>
                 likedActions.some(action => action.trackId === track.id)
             );
 
-            setLikedTracks(filteredTracks);
+            const tracksWithActionId = filteredTracks.map(track => ({
+                ...track,
+                actionId: likedActions.find(action => action.trackId === track.id).id
+            }));
+
+            setLikedTracks(tracksWithActionId);
         } catch (error) {
-            console.error('Error fetching liked tracks:', error);
+            console.error(error);
         }
     };
 
+    const handleUnlike = async (trackId) => {
+        const actionId = likedTracks.find(track => track.id === trackId).actionId;
+        axios.delete(`${apiURLactions}/${actionId}`)
+            .then(() => {
+                const updatedTracks = likedTracks.filter(track => track.id !== trackId);
+                setLikedTracks(updatedTracks);
+                alert('Like removed');
+            })
+            .catch(error => console.error(error));
+    };
+
     return (
-        <div className='LikedTracksPage'>
+        <Container className='AllTracksPage'>
             <h1>Liked Tracks</h1>
-            {likedTracks.map(track => (
-                <div key={track.id}>
-                    <img src={track.cover} alt={track.title} />
-                    <h3>{track.title}</h3>
-                    <h4>{track.artist}</h4>
-                    <p>{track.album}</p>
-                </div>
-            ))}
-        </div>
+            <Row>
+                {likedTracks.map(track => (
+                    <Col md={4} key={track.id} className='mb-3'>
+                        <div className='TrackCard'>
+                            <Link to={`/details-track/${track.id}`}>
+                                <img src={track.cover} alt={track.title} />
+                                <div>
+                                    <h3>{track.title}</h3>
+                                    <h4>{track.artist}</h4>
+                                    <p>{track.album}</p>
+                                </div>
+                            </Link>
+                            <button className="blue-btn rounded-circle" onClick={() => handleUnlike(track.id)}>♥</button>
+                        </div>
+                    </Col>
+                ))}
+            </Row>
+        </Container>
     );
 }
 

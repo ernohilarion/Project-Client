@@ -1,3 +1,8 @@
+.offcanvas {
+    background-color: #000dff;
+    color: white;
+}
+
 .navIcon {
-    width: 15px
+    width: 15px;
 }

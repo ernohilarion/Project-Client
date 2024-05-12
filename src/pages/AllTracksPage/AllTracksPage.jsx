@@ -11,38 +11,43 @@ function AllTracksPage() {
     const [tracks, setTracks] = useState([]);
 
     useEffect(() => {
-        getAllTracks();
+        fetchTracksAndLikes();
     }, []);
 
-    const getAllTracks = () => {
-        axios
-            .get(apiURL)
-            .then(response => {
-                setTracks(response.data);
-            })
-            .catch((error) => console.log(error));
+    const fetchTracksAndLikes = async () => {
+        try {
+            const { data: tracksData } = await axios.get(apiURL);
+            const { data: likesData } = await axios.get(apiURLactions);
+            const tracksWithLikes = tracksData.map(track => ({
+                ...track,
+                liked: likesData.some(like => like.trackId === track.id && like.like)
+            }));
+            setTracks(tracksWithLikes);
+        } catch (error) {
+            console.error(error);
+        }
     };
 
-    const handleLike = (trackId) => {
-        const likeData = {
-            trackId: trackId,
-            like: true
-        };
-        axios.post(apiURLactions, likeData)
-            .then(response => {
-                alert('Track liked!🤍')
-            })
-            .catch(error => console.error(error));
+    const handleLikeToggle = async (trackId, liked) => {
+        liked ?
+            axios.get(`${apiURLactions}?trackId=${trackId}`).then(response => {
+                const likeId = response.data.find(like => like.trackId === trackId).id;
+                axios.delete(`${apiURLactions}/${likeId}`).then(() => {
+                    alert('Like removed');
+                    fetchTracksAndLikes();
+                }).catch(error => console.error(error));
+            }).catch(error => console.error(error)) :
+            axios.post(apiURLactions, { trackId, like: true }).then(() => {
+                alert('Track liked! ♥');
+                fetchTracksAndLikes();
+            }).catch(error => console.error(error));
     };
 
     return (
-<<<<<<< HEAD
         <Container className='AllTracksPage'>
-=======
-        <div className='AllTracksPage'>
-            <br />
->>>>>>> 08399f3bac42db810a669f5d910691051c5707db
-            <h1>All the tracks</h1>
+            <marquee behavior="scroll" direction="left" className="marquee">
+                ALL-TRACKS /ALL-TRACKS /ALL-TRACKS
+            </marquee>
             <Row>
                 {tracks.map((track) => (
                     <Col md={3} key={track.id} className='mb-4'>
@@ -55,21 +60,14 @@ function AllTracksPage() {
                                     <h6>{track.album}</h6>
                                 </div>
                             </Link>
-                            <Button className="pink-btn rounded-circle" onClick={() => handleLike(track.id)}>🤍</Button>
+                            <Button className={`blue-btn rounded-circle ${track.liked ? '' : 'grey-btn'}`}
+                                onClick={() => handleLikeToggle(track.id, track.liked)}>♥</Button>
                         </div>
-<<<<<<< HEAD
                     </Col>
                 ))}
             </Row>
         </Container>
     );
-=======
-                    </Link>
-                )
-            })}
-        </div>
-    )
->>>>>>> 08399f3bac42db810a669f5d910691051c5707db
 }
 
 export default AllTracksPage;
