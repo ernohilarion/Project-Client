@@ -36,12 +36,7 @@ function AllTracksPage() {
     };
 
     return (
-<<<<<<< HEAD
         <Container className='AllTracksPage'>
-=======
-        <div className='AllTracksPage'>
-            <br />
->>>>>>> 08399f3bac42db810a669f5d910691051c5707db
             <h1>All the tracks</h1>
             <Row>
                 {tracks.map((track) => (
@@ -57,19 +52,11 @@ function AllTracksPage() {
                             </Link>
                             <Button className="pink-btn rounded-circle" onClick={() => handleLike(track.id)}>🤍</Button>
                         </div>
-<<<<<<< HEAD
                     </Col>
                 ))}
             </Row>
         </Container>
     );
-=======
-                    </Link>
-                )
-            })}
-        </div>
-    )
->>>>>>> 08399f3bac42db810a669f5d910691051c5707db
 }
 
 export default AllTracksPage;

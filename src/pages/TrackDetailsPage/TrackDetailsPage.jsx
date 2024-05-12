@@ -5,11 +5,7 @@ import { Link, useNavigate, useParams } from "react-router-dom"
 import axios from "axios"
 
 const apiURL = "http://localhost:5005/tracks"
-<<<<<<< HEAD
 const apiURLactions = "http://localhost:5005/tracks"
-=======
-const apiURLactions = "http://localhost:5005/actions"
->>>>>>> 08399f3bac42db810a669f5d910691051c5707db
 
 function TrackDetailsPage() {
     const [track, setTrack] = useState({})
