@@ -8,7 +8,7 @@ function HomePage() {
 
             <br />
             <br />
-            <marquee direction="left"><h2><strong>DROP HIT</strong></h2></marquee>
+            <marquee direction="left"><h2><strong>DROPpppp HIiT</strong></h2></marquee>
             <img src={coverapp} alt="Cover" />
 
 
