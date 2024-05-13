@@ -48,13 +48,9 @@ function AllTracksPage() {
 
     return (
         <Container className='AllTracksPage'>
-<<<<<<< HEAD
-            <h1>All the tracks</h1>
-=======
             <marquee behavior="scroll" direction="left" className="marquee">
-                ALL-TRACKS /ALL-TRACKS /ALL-TRACKS
+                ALL-TRACKS /ALL-TRACKS /ALL-TRACKS /ALL-TRACKS
             </marquee>
->>>>>>> 9d14b2596cde83487472204aa7cc58cf7f93e6ea
             <Row>
                 {tracks.map((track) => (
                     <Col md={3} key={track.id} className='mb-4'>
