@@ -1,0 +1,31 @@
+@import url();
+
+.TrackDetailsPage {
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.Card {
+    margin-bottom: 20px;
+}
+
+.Card .Card-Img {
+    width: 100%;
+    height: auto;
+}
+
+.Card .Card-Body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.buttons-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.Button {
+    flex-grow: 1;
+}

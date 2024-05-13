@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { useState } from 'react';
+import SearchBar from '../Searchbar/Searchbar'
 
 const Sidebar = () => {
     const [show, setShow] = useState(false);
@@ -25,6 +26,7 @@ const Sidebar = () => {
                 <Offcanvas.Header closeButton>
                     <Offcanvas.Title>DROP HIT</Offcanvas.Title>
                 </Offcanvas.Header>
+                <SearchBar />
                 <Offcanvas.Body>
                     <ul>
                         <li>

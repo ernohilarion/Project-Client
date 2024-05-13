@@ -1,3 +1,10 @@
+.AboutUsPage {
+    background-color: #ffffff;
+    color: white;
+    padding-top: 20px;
+    padding-bottom: 50px;
+}
+
 .about img {
     width: 100%;
     object-fit: contain;
@@ -23,4 +30,11 @@
 .photo {
     justify-content: center;
     display: flex;
+}
+
+.marquee {
+    font-size: 6rem;
+    font-weight: bold;
+    color: #000000;
+    padding: 10px 0;
 }

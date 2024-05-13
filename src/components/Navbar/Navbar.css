@@ -1,3 +1,27 @@
-.rounded-navbar {
-    border-radius: 10px;
+.bg-body-tertiary {
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    margin-bottom: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    backdrop-filter: blur(6px);
+    background-color: #00000000 !important;
+    /* Important para que tenga preferencia como explicó Ger */
+}
+
+.container-fluid {
+    width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.navbar-collapse {
+    padding-right: 10px;
+}
+
+.rounded-circle {
+    margin-right: 10px;
 }
