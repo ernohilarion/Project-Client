@@ -17,8 +17,10 @@ function AllTracksPage() {
     const fetchTracksAndLikes = async () => {
 
         try {
-            const { data: tracksData } = await axios.get(apiURL)
-            const { data: likesData } = await axios.get(apiActionsURL)
+            const { data: tracksData } = await
+                axios.get(apiURL)
+            const { data: likesData } = await
+                axios.get(apiActionsURL)
 
             const likesMap = likesData.reduce((map, like) => {
                 map[like.trackId] = like.like ? true : map[like.trackId] || false
@@ -49,7 +51,7 @@ function AllTracksPage() {
     return (
         <Container className='AllTracksPage'>
             <marquee behavior="scroll" direction="left" className="marquee">
-                ALL-TRACKS /ALL-TRACKS /ALL-TRACKS /ALL-TRACKS
+                ALL-TRACKS /ALL-TRACKS /ALL-TRACKS
             </marquee>
             <Row>
                 {tracks.map((track) => (
