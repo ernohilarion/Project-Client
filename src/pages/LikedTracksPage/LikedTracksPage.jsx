@@ -18,17 +18,17 @@ function LikedTracksPage() {
         try {
             const { data: actionsData } = await axios.get(`${apiURL}/actions`)
 
-            const likedActionsMap = actionsData.reduce((map, action) => {
+            const likedActionsMapeo = actionsData.reduce((map, action) => {
                 map[action.trackId] = action.like ? action.id : map[action.trackId]
                 return map
             }, {})
 
             const { data: tracksData } = await axios.get(`${apiURL}/tracks`)
 
-            const likedTracks = tracksData.filter(track => likedActionsMap.hasOwnProperty(track.id))
+            const likedTracks = tracksData.filter(track => likedActionsMapeo.hasOwnProperty(track.id)) // Tiene una propiedad, true
                 .map(track => ({
                     ...track,
-                    actionId: likedActionsMap[track.id]
+                    actionId: likedActionsMapeo[track.id]
                 }))
 
             setLikedTracks(likedTracks)

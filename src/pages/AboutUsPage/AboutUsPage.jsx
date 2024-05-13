@@ -10,7 +10,6 @@ export default function AboutUs() {
             <marquee behavior="scroll" direction="left" className="marquee">
                 ABOUT-US /ABOUT-US /ABOUT-US
             </marquee>
-
             <Row className="mt-5 justify-content-center">
                 <Col xs={12} md={6} className="photo">
                     <Card className="card">
