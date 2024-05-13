@@ -1,81 +1,75 @@
-import { useNavigate, useParams } from "react-router-dom"
-import { Button, Form } from "react-bootstrap"
+import { Container, Button, Card, Row, Col, Form } from "react-bootstrap"
+import { useState, useEffect } from "react"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import axios from "axios"
-import { useEffect, useState } from "react"
+import CommentTrackForm from '../../components/CommentTrackForm/CommentTrackForm'
 
-
-const apiURL = 'http://localhost:5005'
-
+const apiURL = "http://localhost:5005"
 
 function EditTrackForm() {
 
-    const [trackData, setTrackData] = useState({
-        title: " ",
-        artist: " ",
-        album: " ",
-        year: 0,
-        length: 0,
-        cover: " ",
-        genres: [" , "],
-        explicit: " ",
-    })
-
-    // const { trackId } = useParams()
-
-    // useEffect(() => {
-    //     axios
-    //         .get(`${apiURL}${trackId}`)
-    //         .then(({ data }) => setTrackData(data))
-    //         .catch(err => console.log(err))
-
-    // }, [])
-
-    // const handleInputChange = event => {
-    //     const { name, value } = event.target
-    //     setTrackData({ ...trackData, [name]: value })
-    // }
-
-    // const handleTrackFormSubmit = e => {
-
-    //     e.preventDefault()
-
-    //     axios
-    //         .post(`${apiURL}${trackId}`, trackData)
-    //         .then(() => navigate('/all-tracks'))
-    //         .catch(err => console.log(err))
-    // }
-
-
-    useEffect(() => {
-        loadFormData()          // 1.- Primero se rellena el form con los datos a editar
-    }, [])
+    const [track, setTrack] = useState({})
 
     const { trackId } = useParams()
 
     const navigate = useNavigate()
 
-    const loadFormData = () => {
-        axios
-            .get(`${apiURL}/tracks/${trackId}`)
-            .then(({ data }) => setTrackData(data))
-            .catch(err => console.log(err))
+    const [comment, setComment] = useState({
+        id: "",
+        trackId: "",
+        like: false,
+        rating: 0,
+        comment: ""
+    })
+
+    useEffect(() => {
+        loadTrackDetails()
+        loadComments()
+    }, [trackId])
+
+    const loadTrackDetails = () => {
+        axios.get(`${apiURL}/tracks/${trackId}`)
+            .then(({ data }) => setTrack(data))
+            .catch(error => console.error(error))
     }
 
-    const handleInputChange = event => {
+    const loadComments = () => {
+        axios.get(`${apiURL}/actions/?trackId=${trackId}`)
+            .then(({ data }) => setComments(data))
+            .catch(error => console.error(error))
+    }
+
+    const handleInputChange = (event) => {
         const { name, value } = event.target
-        setTrackData({ ...trackData, [name]: value })
+        setComment(prevState => ({ ...prevState, [name]: value }))
     }
-
 
     const handleTrackFormSubmit = e => {
-
         e.preventDefault()
+        const newAction = {
+            trackId: parseInt(trackId),
+            like: comment.like,
+            rating: parseInt(comment.rating),
+            comment: comment.comment
+        }
 
-        axios
-            .put(`${apiURL}/${trackId}`, trackData)
-            .then(() => navigate('/all-tracks'))
-            .catch(err => console.log(err))
+        axios.post(`${apiURL}/actions`, newAction)
+            .then(({ data }) => {
+                setComments([...comments, data])
+                setComment({ id: "", trackId: "", like: false, rating: 0, comment: "" })
+            })
+            .catch(error => console.error(error))
     }
+
+    const deleteComment = (commentId) => {
+        axios.delete(`${apiURL}/actions/${commentId}`)
+            .then(() => {
+                const updatedComments = comments.filter(comment => comment.id !== commentId)
+                setComments(updatedComments)
+            })
+            .catch(error => console.error(error))
+    }
+
 
     return (
         <div className='EditTrackForm mt-5'>
@@ -150,7 +144,7 @@ function EditTrackForm() {
                         type="text"
                         name="genres"
                         value={trackData.genres}
-                        onChange={handleInputChange} />
+                        onChange={handleGeneresChange} />
                 </Form.Group>
 
                 <Form.Group className="mb-3">
@@ -168,7 +162,10 @@ function EditTrackForm() {
                     </Form.Select>
                 </Form.Group>
 
-                <Button variant="primary" type="submit">Edit Track</Button>
+                <Button variant="primary" type="submit">
+                    Edit Track
+                </Button>
+
 
             </Form>
 
