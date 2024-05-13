@@ -4,13 +4,15 @@ import { useState, useEffect } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import axios from "axios"
 
-const apiURL = "http://localhost:5005/tracks"
-const apiURLactions = "http://localhost:5005/actions"
+const apiURL = "http://localhost:5005"
 
 function TrackDetailsPage() {
+
     const [track, setTrack] = useState({})
     const [comments, setComments] = useState([])
+
     const { trackId } = useParams()
+
     const navigate = useNavigate()
 
     const [comment, setComment] = useState({
@@ -22,21 +24,21 @@ function TrackDetailsPage() {
     })
 
     useEffect(() => {
-        const loadTrackDetails = () => {
-            axios.get(`${apiURL}/${trackId}`)
-                .then(({ data }) => setTrack(data))
-                .catch(error => console.error(error))
-        }
-
-        const loadComments = () => {
-            axios.get(`${apiURLactions}?trackId=${trackId}`)
-                .then(({ data }) => setComments(data))
-                .catch(error => console.error(error))
-        }
-
         loadTrackDetails()
         loadComments()
     }, [trackId])
+
+    const loadTrackDetails = () => {
+        axios.get(`${apiURL}/tracks/${trackId}`)
+            .then(({ data }) => setTrack(data))
+            .catch(error => console.error(error))
+    }
+
+    const loadComments = () => {
+        axios.get(`${apiURL}/actions/?trackId=${trackId}`)
+            .then(({ data }) => setComments(data))
+            .catch(error => console.error(error))
+    }
 
     const handleInputChange = (event) => {
         const { name, value } = event.target
@@ -52,7 +54,7 @@ function TrackDetailsPage() {
             comment: comment.comment
         }
 
-        axios.post(apiURLactions, newAction)
+        axios.post(`${apiURL}/actions`, newAction)
             .then(({ data }) => {
                 setComments([...comments, data])
                 setComment({ id: "", trackId: "", like: false, rating: 0, comment: "" })
@@ -61,12 +63,16 @@ function TrackDetailsPage() {
     }
 
     const deleteComment = (commentId) => {
-        axios.delete(`${apiURLactions}/${commentId}`)
+        axios.delete(`${apiURL}/actions/${commentId}`)
             .then(() => {
                 const updatedComments = comments.filter(comment => comment.id !== commentId)
                 setComments(updatedComments)
             })
             .catch(error => console.error(error))
+    }
+
+    const deleteTrack = () => {
+        alert('elimina aqui')
     }
 
     return (
@@ -92,7 +98,7 @@ function TrackDetailsPage() {
             <Link to={`/edit-tracks/${trackId}`}>
                 <Button variant="primary">Edit <em>{track.title}</em></Button>
             </Link>
-            <Button variant="danger" onClick={() => navigate('/all-tracks')}>Eliminar <em>{track.title}</em></Button>
+            <Button variant="danger" onClick={deleteTrack}>Eliminar <em>{track.title}</em></Button>
 
             <Form onSubmit={handleTrackFormSubmit}>
                 <Form.Group className="mb-3" controlId="formComment">
@@ -123,12 +129,14 @@ function TrackDetailsPage() {
             <div>
                 <h3>Comments</h3>
                 <ul>
-                    {comments.map((comment) => (
-                        <li key={comment.id}>
-                            {comment.comment}
-                            <Button variant="danger" size="sm" onClick={() => deleteComment(comment.id)}>Delete</Button>
-                        </li>
-                    ))}
+                    {
+                        comments.map((comment) => (
+                            <li key={comment.id}>
+                                {comment.comment}
+                                <Button variant="danger" size="sm" onClick={() => deleteComment(comment.id)}>Delete</Button>
+                            </li>
+                        ))
+                    }
                 </ul>
             </div>
         </div>

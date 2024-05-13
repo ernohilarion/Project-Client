@@ -1,11 +1,11 @@
-import './Navbar.css';
+import './Navigation.css';
 import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import Sidebar from '../Sidebar/Sidebar';
 
-function NavbarComp() {
+function Navigation() {
     return (
         <Navbar className="bg-body-tertiary rounded-navbar">
             <Container fluid>
@@ -33,4 +33,4 @@ function NavbarComp() {
     );
 }
 
-export default NavbarComp;
+export default Navigation;

@@ -63,6 +63,14 @@
     background-color: #000dff;
 }
 
+element.style {
+    --play: running;
+    --direction: normal;
+    --duration: 147.367998046875s;
+    --delay: 0s;
+    --iteration-count: infinite;
+}
+
 .marquee {
     font-size: 6rem;
     font-family: "Anton",
@@ -70,4 +78,5 @@
     font-weight: bold;
     color: #000000;
     padding: 10px 0;
+
 }

@@ -4,7 +4,7 @@ import "./Searchbar.css"
 import { useState } from "react"
 import axios from "axios"
 
-const apiURL = "http://localhost:5005/tracks"
+const apiURL = "http://localhost:5005"
 
 const SearchBar = () => {
 
@@ -18,7 +18,7 @@ const SearchBar = () => {
 
     const fetch = value => {
         axios
-            .get(`${apiURL}/all-tracks?title_like=${value}`)
+            .get(`${apiURL}/tracks/all-tracks?title_like=${value}`)
             .then(({ data }) => setResults(data))
             .catch(err => console.log(err))
     }
