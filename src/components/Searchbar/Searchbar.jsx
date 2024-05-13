@@ -10,20 +10,20 @@ const SearchBar = () => {
 
     const [results, setResults] = useState([])
 
-    const handleQuerySearch = event => {
+    const handleQuery = event => {
         const { value } = event.target
 
-        value.length > 1 ? fetchResults(value) : setResults([])
+        value.length > 1 ? fetch(value) : setResults([])
     }
 
-    const fetchResults = value => {
+    const fetch = value => {
         axios
             .get(`${apiURL}/all-tracks?title_like=${value}`)
             .then(({ data }) => setResults(data))
             .catch(err => console.log(err))
     }
 
-    const handleResultsClick = () => {
+    const handleResultsOnClick = () => {
         setResults([])
     }
 
@@ -33,17 +33,17 @@ const SearchBar = () => {
             <Form>
                 <Form.Control
                     type="text"
-                    placeholder="Drop that hit..."
-                    onKeyUp={handleQuerySearch}
+                    placeholder="Search a track"
+                    onKeyUp={handleQuery}
                 />
             </Form>
-            <ListGroup className="ListGroup">
+            <ListGroup className="ListGroupSearch">
                 {
-                    results.map(elm => {
+                    results.map(e => {
                         return (
-                            <Link key={elm.id} to={`/all-tracks/${elm.id}`} className="link-style" onClick={handleResultsClick}>
+                            <Link key={e.id} to={`/all-tracks/${e.id}`} className="link-style" onClick={handleResultsOnClick}>
                                 <ListGroup.Item>
-                                    <div className="img-title"><img src={elm.cover} alt="book-img" />{elm.title}</div>
+                                    <div className="img-title"><img src={e.cover} alt="TestDomingo" />{e.title}</div>
                                 </ListGroup.Item>
                             </Link>
                         )

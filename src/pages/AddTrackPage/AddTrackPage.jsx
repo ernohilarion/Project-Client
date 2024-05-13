@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom"
 import './AddTrackPage.css'
 import { Container, Button, Form, Row, Col } from "react-bootstrap"
-import axios from "axios";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import axios from "axios"
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 const apiURL = 'http://localhost:5005/tracks'
 

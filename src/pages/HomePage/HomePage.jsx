@@ -1,6 +1,6 @@
-import './HomePage.css';
-import coverapp from "./../../assets/coverapp.jpeg";
-import { Carousel } from 'react-bootstrap';
+import './HomePage.css'
+import coverapp from "./../../assets/coverapp.jpeg"
+import { Carousel } from 'react-bootstrap'
 
 function HomePage() {
 
@@ -13,4 +13,4 @@ function HomePage() {
     );
 }
 
-export default HomePage;
+export default HomePage

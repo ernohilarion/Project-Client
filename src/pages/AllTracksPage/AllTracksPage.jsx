@@ -1,47 +1,50 @@
-import './AllTracksPage.css';
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import { Button, Container, Row, Col } from "react-bootstrap";
+import './AllTracksPage.css'
+import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import axios from 'axios'
+import { Button, Container, Row, Col } from "react-bootstrap"
 
-const apiURL = 'http://localhost:5005/tracks';
-const apiURLactions = 'http://localhost:5005/actions';
+const apiURL = 'http://localhost:5005/tracks'
+const apiActionsURL = 'http://localhost:5005/actions'
 
 function AllTracksPage() {
-    const [tracks, setTracks] = useState([]);
+    const [tracks, setTracks] = useState([])
 
     useEffect(() => {
-        fetchTracksAndLikes();
-    }, []);
+        fetchTracksAndLikes()
+    }, [])
 
     const fetchTracksAndLikes = async () => {
+
         try {
-            const { data: tracksData } = await axios.get(apiURL);
-            const { data: likesData } = await axios.get(apiURLactions);
+            const { data: tracksData } = await axios.get(apiURL)
+            const { data: likesData } = await axios.get(apiActionsURL)
+
+            const likesMap = likesData.reduce((map, like) => {
+                map[like.trackId] = like.like ? true : map[like.trackId] || false
+                return map
+            }, {})
+
             const tracksWithLikes = tracksData.map(track => ({
                 ...track,
-                liked: likesData.some(like => like.trackId === track.id && like.like)
-            }));
-            setTracks(tracksWithLikes);
-        } catch (error) {
-            console.error(error);
-        }
-    };
+                liked: !!likesMap[track.id]
+            }))
+            setTracks(tracksWithLikes)
 
-    const handleLikeToggle = async (trackId, liked) => {
-        liked ?
-            axios.get(`${apiURLactions}?trackId=${trackId}`).then(response => {
-                const likeId = response.data.find(like => like.trackId === trackId).id;
-                axios.delete(`${apiURLactions}/${likeId}`).then(() => {
-                    alert('Like removed');
-                    fetchTracksAndLikes();
-                }).catch(error => console.error(error));
-            }).catch(error => console.error(error)) :
-            axios.post(apiURLactions, { trackId, like: true }).then(() => {
-                alert('Track liked! ♥');
-                fetchTracksAndLikes();
-            }).catch(error => console.error(error));
-    };
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    const handleLike = async (trackId) => {
+        try {
+            await axios.post(apiActionsURL, { trackId, like: true })
+            fetchTracksAndLikes()
+
+        } catch (error) {
+            console.error(error)
+        }
+    }
 
     return (
         <Container className='AllTracksPage'>
@@ -60,14 +63,16 @@ function AllTracksPage() {
                                     <h6>{track.album}</h6>
                                 </div>
                             </Link>
-                            <Button className={`blue-btn rounded-circle ${track.liked ? '' : 'grey-btn'}`}
-                                onClick={() => handleLikeToggle(track.id, track.liked)}>♥</Button>
+                            {!track.liked && (
+                                <Button className='blue-btn rounded-circle'
+                                    onClick={() => handleLike(track.id)}>♥</Button>
+                            )}
                         </div>
                     </Col>
                 ))}
             </Row>
         </Container>
-    );
+    )
 }
 
-export default AllTracksPage;
+export default AllTracksPage

@@ -1,8 +1,8 @@
 import { useNavigate, useParams } from "react-router-dom"
 import './EditTrackPage.css'
 import { Container, Button, Form, Row, Col } from "react-bootstrap"
-import axios from "axios";
-import { useEffect, useState } from "react";
+import axios from "axios"
+import { useEffect, useState } from "react"
 
 
 const apiURL = 'http://localhost:5005/tracks'

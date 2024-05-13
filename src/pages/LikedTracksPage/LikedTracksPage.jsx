@@ -1,50 +1,54 @@
-import './LikedTracksPage.css';
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Container, Row, Col } from "react-bootstrap";
-import { Link } from 'react-router-dom';
+import './LikedTracksPage.css'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import { Container, Row, Col } from "react-bootstrap"
+import { Link } from 'react-router-dom'
 
-const apiURL = 'http://localhost:5005/tracks';
-const apiURLactions = 'http://localhost:5005/actions';
+const apiURL = 'http://localhost:5005/tracks'
+const apiActionsURL = 'http://localhost:5005/actions'
 
 function LikedTracksPage() {
-    const [likedTracks, setLikedTracks] = useState([]);
+    const [likedTracks, setLikedTracks] = useState([])
 
     useEffect(() => {
-        fetchLikedTracks();
-    }, []);
+        fetchLikedTracks()
+    }, [])
 
     const fetchLikedTracks = async () => {
+
         try {
-            const actionsResponse = await axios.get(apiURLactions);
-            const likedActions = actionsResponse.data.filter(action => action.like === true);
+            const { data: actionsData } = await axios.get(apiActionsURL)
 
-            const tracksResponse = await axios.get(apiURL);
-            const filteredTracks = tracksResponse.data.filter(track =>
-                likedActions.some(action => action.trackId === track.id)
-            );
+            const likedActionsMap = actionsData.reduce((map, action) => {
+                map[action.trackId] = action.like ? action.id : map[action.trackId]
+                return map
+            }, {})
 
-            const tracksWithActionId = filteredTracks.map(track => ({
-                ...track,
-                actionId: likedActions.find(action => action.trackId === track.id).id
-            }));
+            const { data: tracksData } = await axios.get(apiURL)
 
-            setLikedTracks(tracksWithActionId);
+            const likedTracks = tracksData.filter(track => likedActionsMap.hasOwnProperty(track.id))
+                .map(track => ({
+                    ...track,
+                    actionId: likedActionsMap[track.id]
+                }))
+
+            setLikedTracks(likedTracks)
+
         } catch (error) {
-            console.error(error);
+            console.error(error)
         }
-    };
+    }
 
-    const handleUnlike = async (trackId) => {
-        const actionId = likedTracks.find(track => track.id === trackId).actionId;
-        axios.delete(`${apiURLactions}/${actionId}`)
-            .then(() => {
-                const updatedTracks = likedTracks.filter(track => track.id !== trackId);
-                setLikedTracks(updatedTracks);
-                alert('Like removed');
-            })
-            .catch(error => console.error(error));
-    };
+    const handleUnlike = async (actionId) => {
+
+        try {
+            await axios.delete(`${apiActionsURL}/${actionId}`)
+            setLikedTracks(prevTracks => prevTracks.filter(track => track.actionId !== actionId))
+
+        } catch (error) {
+            console.error(error)
+        }
+    }
 
     return (
         <Container className='AllTracksPage'>
@@ -61,13 +65,13 @@ function LikedTracksPage() {
                                     <p>{track.album}</p>
                                 </div>
                             </Link>
-                            <button className="blue-btn rounded-circle" onClick={() => handleUnlike(track.id)}>♥</button>
+                            <button className="blue-btn rounded-circle" onClick={() => handleUnlike(track.actionId)}>♥</button>
                         </div>
                     </Col>
                 ))}
             </Row>
         </Container>
-    );
+    )
 }
 
-export default LikedTracksPage;
+export default LikedTracksPage
