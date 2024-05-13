@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
 .AllTracksPage {
     background-color: #ffffff;
     color: white;
@@ -63,6 +65,8 @@
 
 .marquee {
     font-size: 6rem;
+    font-family: "Anton",
+        sans-serif;
     font-weight: bold;
     color: #000000;
     padding: 10px 0;
