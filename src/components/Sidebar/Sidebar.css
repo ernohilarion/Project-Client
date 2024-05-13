@@ -1,8 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Sixtyfour&display=swap');
+
 .offcanvas {
-    background-color: #000dff;
+    backdrop-filter: blur(6px);
+    background-color: #000dffc3;
     color: white;
+    font-size: 1.5rem;
+
 }
 
 .navIcon {
     width: 15px;
+}
+
+.offcanvas a {
+    color: white;
+    text-decoration: none;
+}
+
+.offcanvas-title {
+    font-family: 'Sixtyfour', sans-serif !important;
+}
+
+ul {
+    list-style-type: none;
+    font-size: 2rem;
+    padding: 1.5rem;
+}
+
+li {
+    padding: 0.9rem;
+}
+
+li:hover {
+    transform: scale(1.05);
+}
+
+.form-control {
+    border-radius: 0;
+    padding: 1rem;
+}
+
+.btn-close {
+    background-color: white;
+    border-radius: 0;
 }

@@ -16,12 +16,19 @@
 
 .TrackCard:hover {
     transform: scale(1.05);
+    box-shadow: 0 8px 16px 0 #000dff50;
+}
+
+.TrackCard:hover div {
+    backdrop-filter: blur(12px);
+    background-color: #000dff50 !important;
 }
 
 .TrackCard img {
     width: 100%;
     display: block;
     height: auto;
+
 }
 
 .TrackCard div {
@@ -30,7 +37,7 @@
     left: 0;
     width: 100%;
     backdrop-filter: blur(6px);
-    background-color: #00000000 !important;
+    background-color: #000dffc3 !important;
     padding: 10px;
     color: white;
     transition: background-color 0.3s;
@@ -77,6 +84,5 @@ element.style {
         sans-serif;
     font-weight: bold;
     color: #000000;
-    padding: 10px 0;
-
+    padding: 1.15rem 0rem;
 }

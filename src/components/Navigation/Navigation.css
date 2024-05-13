@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Sixtyfour&display=swap');
+
 .bg-body-tertiary {
     width: 100vw;
     position: fixed;
@@ -12,6 +14,22 @@
     /* Important para que tenga preferencia como explicó Ger */
 }
 
+.navbar-brand {
+    font-family: "Sixtyfour", sans-serif !important;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+        "BLED" 0,
+        "SCAN" 0;
+}
+
+.navbar-brand a {
+    color: #000dff !important;
+    text-decoration: none;
+    font-size: 2rem;
+}
+
 .container-fluid {
     width: 100%;
     padding-right: 0;
@@ -24,4 +42,12 @@
 
 .rounded-circle {
     margin-right: 10px;
+}
+
+.btn-primary {
+    --bs-btn-bg: #000dff !important;
+    --bs-btn-border-color: #000dff !important;
+    --bs-btn-hover-bg: grey;
+    --bs-btn-hover-border-color: grey;
+
 }

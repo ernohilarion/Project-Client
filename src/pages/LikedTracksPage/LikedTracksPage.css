@@ -63,3 +63,12 @@
 .grey-btn:hover {
     background-color: #ccc;
 }
+
+.marquee {
+    font-size: 6rem;
+    font-family: "Anton",
+        sans-serif;
+    font-weight: bold;
+    color: #000000;
+    padding: 1.15rem 0rem;
+}

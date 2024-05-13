@@ -12,13 +12,6 @@ function Navigation() {
                 <Sidebar />
                 <Navbar.Brand href="/">
                     <Link to="/">
-                        <img
-                            src="https://em-content.zobj.net/source/apple/325/headphone_1f3a7.png"
-                            alt="DROP HIT Logo"
-                            width="30"
-                            height="30"
-                            className="d-inline-block align-top"
-                        />
                         DROP HIT
                     </Link>
                 </Navbar.Brand>

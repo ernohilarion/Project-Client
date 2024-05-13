@@ -8,9 +8,8 @@ const TrackCard = ({ id, title, artist, album, cover, liked, handleLike }) => {
             <Link to={`/details-track/${id}`}>
                 <img src={cover} alt={title} />
                 <div>
-                    <h3>{title}</h3>
-                    <h4>{artist}</h4>
-                    <h6>{album}</h6>
+                    <h4>{title}</h4>
+                    <h6>{artist}</h6>
                 </div>
             </Link>
             {
