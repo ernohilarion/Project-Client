@@ -44,7 +44,7 @@ function LikedTracksPage() {
         try {
             await axios.delete(`${apiActionsURL}/${actionId}`)
             setLikedTracks(prevTracks => prevTracks.filter(track => track.actionId !== actionId))
-
+            alert('Track unliked')
         } catch (error) {
             console.error(error)
         }
@@ -52,7 +52,9 @@ function LikedTracksPage() {
 
     return (
         <Container className='AllTracksPage'>
-            <h1>Liked Tracks</h1>
+            <marquee behavior="scroll" direction="left" className="marquee">
+                LIKED-TRACKS /LIKED-TRACKS /LIKED-TRACKS
+            </marquee>
             <Row>
                 {likedTracks.map(track => (
                     <Col md={4} key={track.id} className='mb-3'>
