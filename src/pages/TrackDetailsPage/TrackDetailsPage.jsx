@@ -1,7 +1,7 @@
-import { Container, Row, Col, Button } from "react-bootstrap"
+import { Container, Row, Col, Button, Image, ListGroup, ButtonGroup } from "react-bootstrap"
 import CommentTrackForm from '../../components/CommentTrackForm/CommentTrackForm'
+import CommentsList from './../../components/CommentsList/CommentsList'
 
-import TrackCard from '../../components/TrackCard/TrackCard'
 import { Link, useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import axios from "axios"
@@ -21,8 +21,16 @@ function TrackDetailsPage() {
     }, [trackId])
 
     const loadTrackDetails = () => {
-        axios.get(`${apiURL}/tracks/${trackId}`)
+        axios
+            .get(`${apiURL}/tracks/${trackId}`)
             .then(({ data }) => setTrack(data))
+            .catch(error => console.error(error))
+    }
+
+    const loadComments = () => {
+        axios
+            .get(`${apiURL}/actions/?trackId=${trackId}`)
+            .then(({ data }) => setComments(data))
             .catch(error => console.error(error))
     }
 
@@ -33,81 +41,66 @@ function TrackDetailsPage() {
             .catch(error => console.error(error))
     }
 
-
-    const loadComments = () => {
-        axios.get(`${apiURL}/actions/?trackId=${trackId}`)
-            .then(({ data }) => setComments(data))
-            .catch(error => console.error(error))
-    }
-
-
-
-    const handleLike = async (trackId) => {
-        try {
-            await axios.post(apiActionsURL, { trackId, like: true })
-            fetchTracksAndLikes()
-
-        } catch (error) {
-            console.error(error)
-        }
-    }
-
-
     return (
         <div className="TrackDetailsPage">
+
             <Container>
 
-                {/* <Container>
-                    <Row>
-                        <Col md={{ span: 6 }}>
-                            <Card>
-                                <Card.Img variant="top" src={track.cover || ''} />
-                                <Card.Body>
-                                    <Card.Title>{track.title}</Card.Title>
-                                    <Card.Text>{track.description}</Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                    </Row>
-                </Container>
-                <h1>{track.title}</h1>
-                <p>{track.description}</p> */}
+                <h1 className="mb-5">{track.artist} - {track.title}</h1>
+
+                <Row className="mt-5 mb-5">
+                    <Col md={{ span: 3, offset: 2 }}>
+                        <Image src={track.cover} />
+                    </Col>
+
+                    <Col md={{ span: 4, offset: 1 }}>
+                        <h3>Detalles del track</h3>
+                        <hr />
+                        <ListGroup>
+                            <ListGroup.Item>De {track.artist}</ListGroup.Item>
+                            <ListGroup.Item>Album {track.album}</ListGroup.Item>
+                        </ListGroup>
+
+                        <div className="TrackCardButtonBlock mt-5 pt-5">
+
+                            <ButtonGroup aria-label="Basic example">
+                                <Button variant="secondary">Back to All the tracks</Button>
+                                <Button variant="secondary">Edit <em>{track.title}</em></Button>
+                                <Button variant="secondary" onClick={deleteTrack}>Eliminar</Button>
+                            </ButtonGroup>
 
 
-                <Link to="/all-tracks">
-                    <Button variant="secondary">Back to All the tracks</Button>
-                </Link>
-                <Link to={`/edit-tracks/${trackId}`}>
-                    <Button variant="primary">Edit <em>{track.title}</em></Button>
-                </Link>
-                <Button variant="danger" onClick={deleteTrack}>Eliminar <em>{track.title}</em></Button>
+                            {/* <Link to="/all-tracks">
+                                <Button variant="secondary">Back to All the tracks</Button>
+                            </Link>
 
-                <div>
-                    <h3>Comments</h3>
-                    <Row>
-                        <Col md={{ span: 6, offset: 3 }}>
-                            <TrackCard {...track} handleLike={handleLike} />
-                            <CommentTrackForm />
+                            <Link to={`/edit-tracks/${trackId}`}>
+                                <Button variant="primary">Edit <em>{track.title}</em></Button>
+                            </Link>
 
+                            <Link to="/all-tracks">
+                                <Button variant="danger" onClick={deleteTrack}>Eliminar <em>{track.title}</em></Button>
+                            </Link> */}
 
+                        </div>
 
-                        </Col>
-                    </Row>
+                    </Col>
 
+                </Row>
 
-                    <ul>
-                        {
-                            comments.map((comment) => (
-                                <li key={comment.id}>
-                                    {comment.comment}
-                                    <Button variant="danger" size="sm" onClick={() => deleteComment(comment.id)}>Delete</Button>
-                                </li>
-                            ))
-                        }
-                    </ul>
+                <hr />
+
+                <div className="TrackCardCommentBlock">
+                    <CommentTrackForm trackId={track.id} loadComments={loadComments} />
                 </div>
-            </Container>
-        </div>
+
+                <div className="TrackCardCommentBlock">
+                    <CommentsList comments={comments} />
+                </div>
+
+            </Container >
+        </div >
     )
 }
+
 export default TrackDetailsPage

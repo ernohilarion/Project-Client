@@ -1,49 +1,40 @@
-import { Container, Button, Card, Row, Col, Form } from "react-bootstrap"
-import { useState, useEffect } from "react"
-import { Link, useNavigate, useParams } from "react-router-dom"
-import axios from "axios"
-const apiURL = "http://localhost:5005"
+import React, { useState } from "react";
+import { Button, Form } from "react-bootstrap";
+import axios from "axios";
 
+const apiURL = "http://localhost:5005";
 
-function CommentTrackForm() {
+function CommentTrackForm({ trackId, loadComments }) {
 
     const [comment, setComment] = useState({
-        id: "",
-        trackId: "",
         like: false,
         rating: 0,
         comment: ""
     })
 
-
     const handleInputChange = (event) => {
-        const { name, value } = event.target
-        setComment(prevState => ({ ...prevState, [name]: value }))
+        const { name, value } = event.target;
+        setComment(prevState => ({ ...prevState, [name]: value }));
     }
 
-    const handleTrackFormSubmit = e => {
+    const handleCommentFormSubmit = e => {
 
         e.preventDefault()
 
-        const newAction = {
-            trackId: parseInt(trackId),
-            like: comment.like,
-            rating: parseInt(comment.rating),
-            comment: comment.comment
-        }
+        const commentContent = { ...comment, trackId: trackId }
 
         axios
-            .post(`${apiURL}/actions`, newAction)
-            .then(({ data }) => {
-                setComment({ id: "", trackId: "", like: false, rating: 0, comment: "" })
+            .post(`${apiURL}/actions`, commentContent)
+            .then(() => {
+                setComment({ ...comment, rating: 0, comment: "" })
+                loadComments()
             })
-            .catch(error => console.error(error))
+            .catch(error => console.error(error));
     }
 
     return (
         <div className="CommentTrackForm">
-
-            <Form onSubmit={handleTrackFormSubmit}>
+            <Form onSubmit={handleCommentFormSubmit}>
                 <Form.Group className="mb-3" controlId="formComment">
                     <Form.Label>Comments</Form.Label>
                     <Form.Control
@@ -66,9 +57,8 @@ function CommentTrackForm() {
                 </Form.Group>
                 <Button variant="primary" type="submit">Add Comment</Button>
             </Form>
-
         </div>
-    )
+    );
 }
 
-export default CommentTrackForm
+export default CommentTrackForm;

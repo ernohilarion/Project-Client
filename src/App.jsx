@@ -12,7 +12,9 @@ function App() {
 
       <Navigation />
 
-      <AppRoutes />
+      <main id='content'>
+        <AppRoutes />
+      </main>
 
       <Footer />
 
