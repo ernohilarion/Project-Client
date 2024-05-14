@@ -29,3 +29,7 @@
 .Button {
     flex-grow: 1;
 }
+
+.TrackCardBlock {
+    margin: 100px;
+}

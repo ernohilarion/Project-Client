@@ -4,70 +4,62 @@ import { Link, useNavigate, useParams } from "react-router-dom"
 import axios from "axios"
 import CommentTrackForm from '../../components/CommentTrackForm/CommentTrackForm'
 
-const apiURL = "http://localhost:5005"
+const apiURL = 'http://localhost:5005'
 
-function EditTrackForm() {
 
-    const [track, setTrack] = useState({})
-
-    const { trackId } = useParams()
+const EditTrackForm = () => {
 
     const navigate = useNavigate()
 
-    const [comment, setComment] = useState({
-        id: "",
-        trackId: "",
-        like: false,
-        rating: 0,
-        comment: ""
+    const [trackData, setTrackData] = useState({
+        title: " ",
+        artist: " ",
+        album: " ",
+        year: 0,
+        length: 0,
+        cover: " ",
+        genres: [" "],
+        explicit: " ",
     })
 
     useEffect(() => {
-        loadTrackDetails()
-        loadComments()
-    }, [trackId])
+        loadFormData()
+    }, [])
 
-    const loadTrackDetails = () => {
-        axios.get(`${apiURL}/tracks/${trackId}`)
-            .then(({ data }) => setTrack(data))
-            .catch(error => console.error(error))
+    const { trackId } = useParams()
+
+
+    const loadFormData = () => {
+        axios
+            .get(`${apiURL}/tracks/${trackId}`)
+            .then(({ data }) => setTrackData(data))
+            .catch(err => console.log(err))
     }
 
-    const loadComments = () => {
-        axios.get(`${apiURL}/actions/?trackId=${trackId}`)
-            .then(({ data }) => setComments(data))
-            .catch(error => console.error(error))
-    }
 
-    const handleInputChange = (event) => {
+    const handleInputChange = event => {
         const { name, value } = event.target
-        setComment(prevState => ({ ...prevState, [name]: value }))
+        setTrackData({ ...trackData, [name]: value })
     }
 
     const handleTrackFormSubmit = e => {
-        e.preventDefault()
-        const newAction = {
-            trackId: parseInt(trackId),
-            like: comment.like,
-            rating: parseInt(comment.rating),
-            comment: comment.comment
-        }
 
-        axios.post(`${apiURL}/actions`, newAction)
-            .then(({ data }) => {
-                setComments([...comments, data])
-                setComment({ id: "", trackId: "", like: false, rating: 0, comment: "" })
-            })
-            .catch(error => console.error(error))
+        e.preventDefault()
+
+        axios
+            .put(`${apiURL}/tracks`, trackData)
+            .then(() => navigate('/tracks/${trackId}'))
+            .catch(err => console.log(err))
     }
 
-    const deleteComment = (commentId) => {
-        axios.delete(`${apiURL}/actions/${commentId}`)
-            .then(() => {
-                const updatedComments = comments.filter(comment => comment.id !== commentId)
-                setComments(updatedComments)
-            })
-            .catch(error => console.error(error))
+    const handleGeneresChange = e => {
+        const { value } = e.target
+
+        console.log('CONVIERTE ESTO', value, 'EN UN ARRAY SEPARADO POR LAS COMAS')
+
+        let genresArray = value.split(',')   // <= work here
+
+        setTrackData({ ...trackData, genres: genresArray })
     }
 
 
@@ -162,7 +154,7 @@ function EditTrackForm() {
                     </Form.Select>
                 </Form.Group>
 
-                <Button variant="primary" type="submit">
+                <Button variant="primary" type="submit" onClick={handleTrackFormSubmit}>
                     Edit Track
                 </Button>
 
