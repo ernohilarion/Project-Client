@@ -54,23 +54,26 @@ function TrackDetailsPage() {
                     </Col>
 
                     <Col md={{ span: 4, offset: 1 }}>
-                        <h3>Detalles del track</h3>
+                        <h3>Track Details</h3>
                         <hr />
                         <ListGroup>
+                            <ListGroup.Item>{track.title}</ListGroup.Item>
                             <ListGroup.Item>De {track.artist}</ListGroup.Item>
                             <ListGroup.Item>Album {track.album}</ListGroup.Item>
+                            <ListGroup.Item>{track.year}</ListGroup.Item>
+                            <ListGroup.Item>{track.genres}</ListGroup.Item>
                         </ListGroup>
 
                         <div className="TrackCardButtonBlock mt-5 pt-5">
 
-                            <ButtonGroup aria-label="Basic example">
+                            {/* <ButtonGroup aria-label="Basic example">
                                 <Button variant="secondary">Back to All the tracks</Button>
                                 <Button variant="secondary">Edit <em>{track.title}</em></Button>
                                 <Button variant="secondary" onClick={deleteTrack}>Eliminar</Button>
-                            </ButtonGroup>
+                            </ButtonGroup> */}
 
 
-                            {/* <Link to="/all-tracks">
+                            <Link to="/all-tracks">
                                 <Button variant="secondary">Back to All the tracks</Button>
                             </Link>
 
@@ -80,7 +83,7 @@ function TrackDetailsPage() {
 
                             <Link to="/all-tracks">
                                 <Button variant="danger" onClick={deleteTrack}>Eliminar <em>{track.title}</em></Button>
-                            </Link> */}
+                            </Link>
 
                         </div>
 
@@ -95,7 +98,7 @@ function TrackDetailsPage() {
                 </div>
 
                 <div className="TrackCardCommentBlock">
-                    <CommentsList comments={comments} />
+                    <CommentsList comments={comments} loadComments={loadComments} />
                 </div>
 
             </Container >
