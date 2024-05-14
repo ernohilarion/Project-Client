@@ -1,4 +1,3 @@
-import { Button } from "react-bootstrap"
 import { Link } from "react-router-dom"
 
 const TrackCard = ({ id, title, artist, album, cover, liked, handleLike }) => {
@@ -12,14 +11,6 @@ const TrackCard = ({ id, title, artist, album, cover, liked, handleLike }) => {
                     <h6>{artist}</h6>
                 </div>
             </Link>
-            {
-                !liked && (
-                    <Button
-                        className='blue-btn rounded-circle'
-                        onClick={() => handleLike(id)}
-                    >♥</Button>
-                )
-            }
         </div>
     )
 }

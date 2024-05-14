@@ -1,5 +1,5 @@
 import './Navigation.css';
-import { Link } from 'react-router-dom';
+import { Link, useParams, useNavigate } from "react-router-dom";
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
