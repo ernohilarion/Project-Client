@@ -1,7 +1,7 @@
 import { Container, Row, Col, Button, Image, ListGroup, ButtonGroup } from "react-bootstrap"
 import CommentTrackForm from '../../components/CommentTrackForm/CommentTrackForm'
 import CommentsList from './../../components/CommentsList/CommentsList'
-
+import LikeButton from "../../components/LikedButton/LikeButton"
 import { Link, useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import axios from "axios"
@@ -18,6 +18,7 @@ function TrackDetailsPage() {
     useEffect(() => {
         loadTrackDetails()
         loadComments()
+
     }, [trackId])
 
     const loadTrackDetails = () => {
@@ -41,6 +42,12 @@ function TrackDetailsPage() {
             .catch(error => console.error(error))
     }
 
+    const convertSecondsToMinutes = (seconds) => {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+    };
+
     return (
         <div className="TrackDetailsPage">
 
@@ -57,11 +64,12 @@ function TrackDetailsPage() {
                         <h3>Track Details</h3>
                         <hr />
                         <ListGroup>
-                            <ListGroup.Item>{track.title}</ListGroup.Item>
-                            <ListGroup.Item>De {track.artist}</ListGroup.Item>
-                            <ListGroup.Item>Album {track.album}</ListGroup.Item>
-                            <ListGroup.Item>{track.year}</ListGroup.Item>
-                            <ListGroup.Item>{track.genres}</ListGroup.Item>
+                            <ListGroup.Item><h4><span>{track.title}</span></h4></ListGroup.Item>
+                            <ListGroup.Item><h5> {track.artist}</h5></ListGroup.Item>
+                            <ListGroup.Item><h5> {track.album} Album </h5></ListGroup.Item>
+                            <ListGroup.Item><h6>{track.year}</h6></ListGroup.Item>
+                            <ListGroup.Item><h6>{convertSecondsToMinutes(track.length)} mins</h6></ListGroup.Item>
+                            <ListGroup.Item><h6>{track.genres}</h6></ListGroup.Item>
                         </ListGroup>
 
                         <div className="TrackCardButtonBlock mt-5 pt-5">
@@ -71,6 +79,7 @@ function TrackDetailsPage() {
                                 <Button variant="secondary">Edit <em>{track.title}</em></Button>
                                 <Button variant="secondary" onClick={deleteTrack}>Eliminar</Button>
                             </ButtonGroup> */}
+
 
                             <Link to="/all-tracks">
                                 <Button variant="secondary">Back to All the tracks</Button>

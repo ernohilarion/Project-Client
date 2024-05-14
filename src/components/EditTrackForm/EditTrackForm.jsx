@@ -1,8 +1,8 @@
-import { Container, Button, Card, Row, Col, Form } from "react-bootstrap"
+import { Button, Form } from "react-bootstrap"
 import { useState, useEffect } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import axios from "axios"
-import CommentTrackForm from '../../components/CommentTrackForm/CommentTrackForm'
+
 
 const apiURL = 'http://localhost:5005'
 
@@ -47,8 +47,8 @@ const EditTrackForm = () => {
         e.preventDefault()
 
         axios
-            .put(`${apiURL}/tracks`, trackData)
-            .then(() => navigate('/tracks/${trackId}'))
+            .put(`${apiURL}/tracks/${trackId}`, trackData)
+            .then(() => navigate(`/details-track/${trackId}`))
             .catch(err => console.log(err))
     }
 
@@ -154,7 +154,7 @@ const EditTrackForm = () => {
                     </Form.Select>
                 </Form.Group>
 
-                <Button variant="primary" type="submit" onClick={handleTrackFormSubmit}>
+                <Button variant="primary" type="submit" >
                     Edit Track
                 </Button>
 

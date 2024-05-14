@@ -45,7 +45,7 @@ function CommentTrackForm({ trackId, loadComments }) {
                     />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label>Rating</Form.Label>
+                    <Form.Label>Editing Priority</Form.Label>
                     <Form.Range
                         name="rating"
                         value={comment.rating}
@@ -53,7 +53,7 @@ function CommentTrackForm({ trackId, loadComments }) {
                         min="1"
                         max="5"
                     />
-                    <Form.Text>Current Rating: {comment.rating}</Form.Text>
+                    <Form.Text>Editing Priority with Production: {comment.rating}</Form.Text>
                 </Form.Group>
                 <Button variant="primary" type="submit">Add Comment</Button>
             </Form>

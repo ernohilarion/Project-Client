@@ -10,6 +10,8 @@ function HomePage() {
             <img src={coverapp} alt="Cover" className="coverImage" />
             <marquee direction="left"><h2><strong>DROP HIT</strong></h2></marquee>
         </div>
+
+
     );
 }
 
