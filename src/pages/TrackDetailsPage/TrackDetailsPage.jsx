@@ -1,7 +1,7 @@
 import { Container, Row, Col, Button, Image, ListGroup, ButtonGroup } from "react-bootstrap"
 import CommentTrackForm from '../../components/CommentTrackForm/CommentTrackForm'
 import CommentsList from './../../components/CommentsList/CommentsList'
-
+import LikeButton from './../../components/LikeButton/LikeButton'
 import { Link, useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import axios from "axios"
@@ -12,12 +12,13 @@ function TrackDetailsPage() {
 
     const [track, setTrack] = useState({})
     const [comments, setComments] = useState([])
-
+    const [actions, setActions] = useState([])
     const { trackId } = useParams()
 
     useEffect(() => {
         loadTrackDetails()
         loadComments()
+        loadActionsLike()
     }, [trackId])
 
     const loadTrackDetails = () => {
@@ -38,6 +39,12 @@ function TrackDetailsPage() {
         axios
             .delete(`${apiURL}/tracks/${trackId}`)
             .then(() => navigate('/all-tracks'))
+            .catch(error => console.error(error))
+    }
+    //Test Traer las acciones de las canciones
+    const loadActionsLike = () => {
+        axios.get(`${apiURL}/actions/?trackId=${trackId}`)
+            .then(({ data }) => setActions(data))
             .catch(error => console.error(error))
     }
 
@@ -71,6 +78,7 @@ function TrackDetailsPage() {
                                 <Button variant="secondary">Edit <em>{track.title}</em></Button>
                                 <Button variant="secondary" onClick={deleteTrack}>Eliminar</Button>
                             </ButtonGroup> */}
+                            <LikeButton trackId={trackId} actions={actions} loadActionsLike={loadActionsLike} />
 
                             <Link to="/all-tracks">
                                 <Button variant="secondary">Back to All the tracks</Button>
