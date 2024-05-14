@@ -1,7 +1,7 @@
 import { Container, Row, Col, Button, Image, ListGroup, ButtonGroup } from "react-bootstrap"
 import CommentTrackForm from '../../components/CommentTrackForm/CommentTrackForm'
 import CommentsList from './../../components/CommentsList/CommentsList'
-import LikeButton from "../../components/LikedButton/LikeButton"
+
 import { Link, useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import axios from "axios"
@@ -12,22 +12,13 @@ function TrackDetailsPage() {
 
     const [track, setTrack] = useState({})
     const [comments, setComments] = useState([])
-    const [actions, setActions] = useState([])
 
     const { trackId } = useParams()
 
     useEffect(() => {
         loadTrackDetails()
         loadComments()
-        loadTrackActions()
     }, [trackId])
-
-    const loadTrackActions = () => {
-        axios
-            .get(`${apiURL}/actions?trackId=${trackId}`)
-            .then(({ data }) => setActions(data))
-            .catch(error => console.error(error))
-    }
 
     const loadTrackDetails = () => {
         axios
@@ -63,25 +54,25 @@ function TrackDetailsPage() {
                     </Col>
 
                     <Col md={{ span: 4, offset: 1 }}>
-                        <h3>Detalles del track</h3>
+                        <h3>Track Details</h3>
                         <hr />
                         <ListGroup>
+                            <ListGroup.Item>{track.title}</ListGroup.Item>
                             <ListGroup.Item>De {track.artist}</ListGroup.Item>
                             <ListGroup.Item>Album {track.album}</ListGroup.Item>
+                            <ListGroup.Item>{track.year}</ListGroup.Item>
+                            <ListGroup.Item>{track.genres}</ListGroup.Item>
                         </ListGroup>
 
                         <div className="TrackCardButtonBlock mt-5 pt-5">
 
-                            <ButtonGroup aria-label="Basic example">
-                                <Button variant="secondary">Back to Tracks</Button>
-                                <Button variant="secondary">Edit</Button>
+                            {/* <ButtonGroup aria-label="Basic example">
+                                <Button variant="secondary">Back to All the tracks</Button>
+                                <Button variant="secondary">Edit <em>{track.title}</em></Button>
                                 <Button variant="secondary" onClick={deleteTrack}>Eliminar</Button>
-                            </ButtonGroup>
+                            </ButtonGroup> */}
 
-                            <LikeButton trackId={trackId} actions={actions} />
-
-
-                            {/* <Link to="/all-tracks">
+                            <Link to="/all-tracks">
                                 <Button variant="secondary">Back to All the tracks</Button>
                             </Link>
 
@@ -91,7 +82,7 @@ function TrackDetailsPage() {
 
                             <Link to="/all-tracks">
                                 <Button variant="danger" onClick={deleteTrack}>Eliminar <em>{track.title}</em></Button>
-                            </Link> */}
+                            </Link>
 
                         </div>
 
@@ -106,7 +97,7 @@ function TrackDetailsPage() {
                 </div>
 
                 <div className="TrackCardCommentBlock">
-                    <CommentsList comments={comments} />
+                    <CommentsList comments={comments} loadComments={loadComments} />
                 </div>
 
             </Container >
