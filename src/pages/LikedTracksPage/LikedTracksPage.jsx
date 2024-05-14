@@ -44,7 +44,7 @@ function LikedTracksPage() {
             <marquee behavior="scroll" direction="left" className="marquee">
                 LIKED-TRACKS /LIKED-TRACKS /LIKED-TRACKS
             </marquee>
-            <TracksList tracks={likedTracks} />
+            <TracksList tracks={likedTracks} columnSize={4} />
         </Container>
     )
 }
