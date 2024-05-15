@@ -2,6 +2,7 @@ import { Button } from 'react-bootstrap'
 import axios from 'axios'
 
 const apiURL = import.meta.env.VITE_API_URL
+const apiURL = import.meta.env.VITE_API_URL;
 
 function LikeButton({ trackId, actions, loadActionsLike }) {
 
