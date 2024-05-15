@@ -6,7 +6,7 @@ import { Link, useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import axios from "axios"
 
-const apiURL = "http://localhost:5005"
+const apiURL = import.meta.env.VITE_API_URL
 
 function TrackDetailsPage() {
 

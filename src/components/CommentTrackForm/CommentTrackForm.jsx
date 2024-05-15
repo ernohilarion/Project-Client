@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import axios from "axios";
 
-const apiURL = "http://localhost:5005";
+const apiURL = import.meta.env.VITE_API_URL;
 
 function CommentTrackForm({ trackId, loadComments }) {
 
     const [comment, setComment] = useState({
-        like: false,
+
         rating: 0,
         comment: ""
     })

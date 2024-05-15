@@ -3,7 +3,7 @@ import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-const apiURL = 'http://localhost:5005'
+const apiURL = import.meta.env.VITE_API_URL
 
 
 const AddTracksForm = () => {

@@ -1,10 +1,5 @@
-.HomePage {
-    position: relative;
-    width: 100%;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-}
+@import url('https://fonts.googleapis.com/css2?family=Sixtyfour&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
 .coverImage {
     width: 100%;
@@ -12,13 +7,130 @@
     height: auto;
     margin-top: 0;
     vertical-align: top;
+    z-index: 1;
+}
+
+.textOverlay {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%);
+    z-index: 2;
+    text-align: left;
+}
+
+h2 {
+    font-size: 10vw;
+    color: rgb(0, 0, 0);
+    margin: 0;
+}
+
+.textOverlay span {
+    font-family: "Sixtyfour", sans-serif;
+    font-size: 2em;
+    color: white;
+    z-index: 2;
+}
+
+.HomePageBlockone span {
+    font-family: "Poppins", sans-serif;
+
+}
+
+
+.HomePageBlockone {
+    position: relative;
+
+}
+
+.blueOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 21, 255);
+    opacity: 0.99;
+    z-index: 2;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+
+}
+
+.blueOverlay.hovered {
+    opacity: 0;
+    background-color: transparent;
+}
+
+.textOverlayBlockone span {
+    font-family: "Poppins", sans-serif;
+    font-size: 1em;
+    color: white;
+    z-index: 2;
+
+    /* Tamaño del marquee */
+    margin: 200;
+    /* Centrar horizontalmente */
+    padding: 20px;
+    /* Añadir margen alrededor del marquee */
+    display: inline-block;
+    /* Para que el margen funcione */
+    max-width: 80%;
+    /* Limitar el ancho del marquee */
 }
 
 
 
-h2 {
-    font-size: 250px;
-    color: rgb(0, 0, 0);
+
+
+.spinner-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     margin: 0;
 
+
+}
+
+.spinner-text,
+.spinner-border {
+    color: black;
+
+}
+
+.spinner-text,
+.spinner-border {
+    color: #001bff;
+}
+
+.spinner-border {
+    --bs-spinner-width: 2rem;
+    --bs-spinner-height: 2rem;
+    --bs-spinner-vertical-align: -0.125em;
+    --bs-spinner-border-width: 0.25em;
+    --bs-spinner-animation-speed: 4s;
+    --bs-spinner-animation-name: spinner-border;
+    border: var(--bs-spinner-border-width) solid currentcolor;
+    border-right-color: #130cff;
+}
+
+@media (min-width: 768px) {
+
+
+    h2 {
+        font-size: 100px;
+
+    }
+}
+
+@media (min-width: 1024px) {
+
+
+    .textOverlay {
+        left: 50%;
+
+        transform: translate(-50%, -50%);
+    }
 }

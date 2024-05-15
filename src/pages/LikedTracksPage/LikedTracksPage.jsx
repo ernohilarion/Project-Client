@@ -4,7 +4,7 @@ import axios from 'axios'
 import { Container } from "react-bootstrap"
 import TracksList from '../../components/TracksList/TrackList'
 
-const apiURL = 'http://localhost:5005'
+const apiURL = import.meta.env.VITE_API_URL
 
 function LikedTracksPage() {
     const [likedTracks, setLikedTracks] = useState([])
