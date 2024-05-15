@@ -15,7 +15,7 @@ export default function AboutUs() {
                     <Card className="card">
                         <Card.Img variant="top" src={erno} />
                         <Card.Body>
-                            <Card.Title>Ernesto</Card.Title>
+                            <Card.Title>Ernesto Hilarión</Card.Title>
                             <Card.Text>
                                 Hello! I’m Erno, a passionate Full Stack Developer currently honing my skills at IronHack...blabablbaba
                             </Card.Text>

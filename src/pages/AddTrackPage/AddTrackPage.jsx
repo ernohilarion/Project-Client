@@ -7,8 +7,7 @@ function AddTrackPage() {
     return (
         <div className='AddTrackPage mt-5'>
             <Container>
-                <h1>Nuevo track</h1>
-                <hr />
+                <h1>New track</h1>
                 <Row>
                     <Col md={{ span: 6, offset: 3 }}>
 

@@ -32,11 +32,6 @@ li {
     padding: 0.9rem;
 }
 
-li:hover {
-    transition: transform 0.3s ease-in;
-    transform: scale(1.10);
-}
-
 .form-control {
     border-radius: 0;
     padding: 1rem;

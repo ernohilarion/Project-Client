@@ -2,7 +2,7 @@ import './AllTracksPage.css'
 import { Container } from "react-bootstrap"
 import TracksList from '../../components/TracksList/TrackList'
 
-const apiURL = 'http://localhost:5005'
+const apiURL = import.meta.env.VITE_API_URL
 
 import { useState, useEffect } from 'react'
 import axios from 'axios'

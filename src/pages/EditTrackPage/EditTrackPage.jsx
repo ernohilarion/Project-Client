@@ -8,7 +8,7 @@ function EditTrackPage() {
     return (
         <div className='EditTrackPage mt-5'>
             <Container>
-                <h1>Editar track</h1>
+                <h1>Edit track</h1>
                 <Row>
                     <Col md={{ span: 6, offset: 3 }}>
 

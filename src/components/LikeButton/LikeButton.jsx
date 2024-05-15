@@ -1,7 +1,7 @@
-import { Button } from 'react-bootstrap';
-import axios from 'axios';
+import { Button } from 'react-bootstrap'
+import axios from 'axios'
 
-const apiURL = "http://localhost:5005";
+const apiURL = import.meta.env.VITE_API_URL
 
 function LikeButton({ trackId, actions, loadActionsLike }) {
 
@@ -13,12 +13,12 @@ function LikeButton({ trackId, actions, loadActionsLike }) {
             axios
                 .put(`${apiURL}/actions/${doesLikeAction.id}`, { trackId, like: !doesLikeAction.like })
                 .then(() => loadActionsLike())
-                .catch(err => console.log(err));
+                .catch(err => console.log(err))
         } else {
             axios
                 .post(`${apiURL}/actions`, { trackId, like: true })
                 .then(() => loadActionsLike())
-                .catch(err => console.log(err));
+                .catch(err => console.log(err))
         }
     }
 

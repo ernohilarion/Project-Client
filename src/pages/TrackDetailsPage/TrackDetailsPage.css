@@ -1,8 +1,7 @@
 @import url();
 
 .TrackDetailsPage {
-    padding: 20px;
-    background-color: #f4f4f4;
+    padding: 3.8rem;
 }
 
 .Card {
@@ -24,6 +23,7 @@
     display: flex;
     gap: 10px;
     margin-top: 20px;
+    justify-content: center;
 }
 
 .Button {
@@ -32,4 +32,14 @@
 
 .TrackCardBlock {
     margin: 100px;
+}
+
+.center-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.row {
+    margin-bottom: 1rem;
 }

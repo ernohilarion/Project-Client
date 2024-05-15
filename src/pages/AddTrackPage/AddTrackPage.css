@@ -4,3 +4,9 @@
 body {
     font-family: "Poppins", sans-serif;
 }
+
+.AddTrackPage {
+    background-color: #ffffff;
+    padding-top: 4rem;
+    padding-bottom: 50px;
+}

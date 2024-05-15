@@ -3,7 +3,7 @@ import { Container, Button, Card, Row, Col, Form } from "react-bootstrap"
 import { useState, useEffect } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import axios from "axios"
-const apiURL = "http://localhost:5005"
+const apiURL = import.meta.env.VITE_API_URL
 function TrackDetailsPage() {
     const [track, setTrack] = useState({})
     const [comments, setComments] = useState([])

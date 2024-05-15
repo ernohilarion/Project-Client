@@ -1,19 +1,20 @@
-import { Container, Row, Col, Button, Image, ListGroup, ButtonGroup } from "react-bootstrap"
+import { Container, Row, Col, Button, Image, ListGroup, ButtonGroup } from 'react-bootstrap'
 import CommentTrackForm from '../../components/CommentTrackForm/CommentTrackForm'
 import CommentsList from './../../components/CommentsList/CommentsList'
 import LikeButton from './../../components/LikeButton/LikeButton'
-import { Link, useParams } from "react-router-dom"
-import { useEffect, useState } from "react"
-import axios from "axios"
+import { Link, useParams, useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
+import './TrackDetailsPage.css'
 
-const apiURL = "http://localhost:5005"
+const apiURL = import.meta.env.VITE_API_URL
 
 function TrackDetailsPage() {
-
     const [track, setTrack] = useState({})
     const [comments, setComments] = useState([])
     const [actions, setActions] = useState([])
     const { trackId } = useParams()
+    const navigate = useNavigate()
 
     useEffect(() => {
         loadTrackDetails()
@@ -41,7 +42,7 @@ function TrackDetailsPage() {
             .then(() => navigate('/all-tracks'))
             .catch(error => console.error(error))
     }
-    //Test Traer las acciones de las canciones
+
     const loadActionsLike = () => {
         axios.get(`${apiURL}/actions/?trackId=${trackId}`)
             .then(({ data }) => setActions(data))
@@ -49,75 +50,46 @@ function TrackDetailsPage() {
     }
 
     const convertSecondsToMinutes = (seconds) => {
-        const minutes = Math.floor(seconds / 60);
-        const remainingSeconds = seconds % 60;
-        return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
-    };
+        const minutes = Math.floor(seconds / 60)
+        const remainingSeconds = seconds % 60
+        return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`
+    }
 
     return (
         <div className="TrackDetailsPage">
-
             <Container>
-
-                <h1 className="mb-5">{track.artist} - {track.title}</h1>
-
-                <Row className="mt-5 mb-5">
-                    <Col md={{ span: 3, offset: 2 }}>
-                        <Image src={track.cover} />
+                <h1>{track.title} - {track.artist}</h1>
+                <Row className="align-items-center">
+                    <Col md={4} className="img-col">
+                        <Image src={track.cover} alt={track.title} />
+                        <div className="buttons-container">
+                            <LikeButton trackId={trackId} actions={actions} loadActionsLike={loadActionsLike} />
+                            <Link to="/all-tracks" className="btn btn-secondary">
+                                Back to All
+                            </Link>
+                            <Link to={`/edit-tracks/${trackId}`} className="btn btn-primary">
+                                Edit
+                            </Link>
+                            <Button variant="danger" onClick={deleteTrack}>Delete</Button>
+                        </div>
                     </Col>
-
-                    <Col md={{ span: 4, offset: 1 }}>
-                        <h3>Track Details</h3>
-                        <hr />
-                        <ListGroup>
-                            <ListGroup.Item><h4><span>{track.title}</span></h4></ListGroup.Item>
-                            <ListGroup.Item><h5> {track.artist}</h5></ListGroup.Item>
-                            <ListGroup.Item><h5> {track.album} Album </h5></ListGroup.Item>
+                    <Col md={6} className="details-col">
+                        <ListGroup variant="flush">
+                            <ListGroup.Item><h4>{track.title}</h4></ListGroup.Item>
+                            <ListGroup.Item><h5>{track.artist}</h5></ListGroup.Item>
+                            <ListGroup.Item><h5>{track.album} Album</h5></ListGroup.Item>
                             <ListGroup.Item><h6>{track.year}</h6></ListGroup.Item>
                             <ListGroup.Item><h6>{convertSecondsToMinutes(track.length)} mins</h6></ListGroup.Item>
-                            <ListGroup.Item><h6>{track.genres}</h6></ListGroup.Item>
+                            <ListGroup.Item><h6>{track.genres?.join(', ')}</h6></ListGroup.Item>
                         </ListGroup>
-
-                        <div className="TrackCardButtonBlock mt-5 pt-5">
-
-                            {/* <ButtonGroup aria-label="Basic example">
-                                <Button variant="secondary">Back to All the tracks</Button>
-                                <Button variant="secondary">Edit <em>{track.title}</em></Button>
-                                <Button variant="secondary" onClick={deleteTrack}>Eliminar</Button>
-                            </ButtonGroup> */}
-                            <LikeButton trackId={trackId} actions={actions} loadActionsLike={loadActionsLike} />
-
-
-                            <Link to="/all-tracks">
-                                <Button variant="secondary">Back to All the tracks</Button>
-                            </Link>
-
-                            <Link to={`/edit-tracks/${trackId}`}>
-                                <Button variant="primary">Edit <em>{track.title}</em></Button>
-                            </Link>
-
-                            <Link to="/all-tracks">
-                                <Button variant="danger" onClick={deleteTrack}>Eliminar <em>{track.title}</em></Button>
-                            </Link>
-
-                        </div>
-
                     </Col>
-
                 </Row>
-
-                <hr />
-
-                <div className="TrackCardCommentBlock">
+                <div className="comments-section">
                     <CommentTrackForm trackId={track.id} loadComments={loadComments} />
-                </div>
-
-                <div className="TrackCardCommentBlock">
                     <CommentsList comments={comments} loadComments={loadComments} />
                 </div>
-
-            </Container >
-        </div >
+            </Container>
+        </div>
     )
 }
 
