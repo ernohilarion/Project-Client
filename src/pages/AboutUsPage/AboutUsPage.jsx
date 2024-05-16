@@ -11,8 +11,25 @@ import erno from "./../../assets/erno.gif"
 
 
 export default function AboutUs() {
-    const [isHoveredBlockThree, setIsHoveredBlockThree] = useState(false);
+    const [isHoveredBlockFive, setIsHoveredBlockFive] = useState(false);
     const [isHoveredBlockFour, setIsHoveredBlockFour] = useState(false);
+
+    const handleMouseEnterFive = () => {
+        setIsHoveredBlockFive(true);
+    };
+
+    const handleMouseLeaveFive = () => {
+        setIsHoveredBlockFive(false);
+    };
+
+    const handleMouseEnterFour = () => {
+        setIsHoveredBlockFour(true);
+    };
+
+    const handleMouseLeaveFour = () => {
+        setIsHoveredBlockFour(false);
+    };
+
     return (
         <Container className="AboutUsPage">
             <marquee behavior="scroll" direction="left" className="marquee">
@@ -29,12 +46,12 @@ export default function AboutUs() {
 
             <Row className="mt-5 justify-content-center no-gutters">
                 <Col xs={12} md={6} className="photo">
-                    <Card className={`cardFour ${isHoveredBlockThree ? 'hovered' : ''}`}
-                        onMouseEnter={() => setIsHoveredBlockThree(true)}
-                        onMouseLeave={() => setIsHoveredBlockThree(false)}>
+                    <Card className={`cardFour ${isHoveredBlockFive ? 'hovered' : ''}`}
+                        onMouseEnter={handleMouseEnterFive}
+                        onMouseLeave={handleMouseLeaveFive}>
                         <Card.Img variant="top" src={erno} />
-                        <div className={`blueOverlayFour ${isHoveredBlockThree ? 'hovered' : ''}`}></div>
-                        <div className="textOverlayBlockFour">
+                        <div className={`blueOverlayFive ${isHoveredBlockFive ? 'hovered' : ''}`}></div>
+                        <div className="textOverlayBlockFive">
                             <marquee direction="left"><h2><span>ERNESTO</span></h2></marquee>
                         </div>
                         <Card.Body>
@@ -52,12 +69,12 @@ export default function AboutUs() {
 
                 <Col xs={12} md={6} className="photo">
                     <Card className={`cardFive ${isHoveredBlockFour ? 'hovered' : ''}`}
-                        onMouseEnter={() => setIsHoveredBlockFour(true)}
-                        onMouseLeave={() => setIsHoveredBlockFour(false)}>
+                        onMouseEnter={handleMouseEnterFour}
+                        onMouseLeave={handleMouseLeaveFour}>
                         <Card.Img variant="top" src={adri} />
                         <div className={`blueOverlayFour ${isHoveredBlockFour ? 'hovered' : ''}`}></div>
                         <div className="textOverlayBlockFour">
-                            <marquee direction="left"><h2><span>ADRIAN ADRIAN</span></h2></marquee>
+                            <marquee direction="left"><h2><span>ADRIAN</span></h2></marquee>
                         </div>
                         <Card.Body>
                             <Card.Title>Adrian Sobota</Card.Title>
@@ -71,10 +88,7 @@ export default function AboutUs() {
                         </ListGroup>
                     </Card>
                 </Col>
-
-
             </Row>
-
 
 
             <div className="blockPhotoMatch">
@@ -82,8 +96,6 @@ export default function AboutUs() {
                 <img className="aboutUsPhotoTwo" src={"https://gyazo.com/3bbba307d41425b7c382fd9f1a0d734a.jpg"} alt="Description of Image Two" />
                 <img className="aboutUsPhotoThree" src={"https://gyazo.com/79e562bf89264f3224b6c77cc2a02d8d.png"} alt="Description of Image Three" />
             </div>
-
-
 
             <div className="secondBlockAbout">
                 <div className="content">

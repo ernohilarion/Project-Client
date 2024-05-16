@@ -122,7 +122,7 @@
 
 
 
-.blueOverlayThree {
+.blueOverlayFive {
     position: absolute;
     top: 0;
     left: 0;
@@ -135,12 +135,12 @@
     pointer-events: none;
 }
 
-.blueOverlayThree.hovered {
+.blueOverlayFive.hovered {
     opacity: 0;
     background-color: transparent;
 }
 
-.textOverlayBlockThree {
+.textOverlayBlockFive {
     color: white;
     font-family: "Poppins", sans-serif;
     position: absolute;
@@ -150,7 +150,7 @@
     z-index: 1;
 }
 
-.textOverlayBlockThree h2 {
+.textOverlayBlockFive h2 {
     color: white;
 }
 

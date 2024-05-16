@@ -13,3 +13,8 @@ img {
 #content {
   padding-top: 0px
 }
+
+:root {
+
+  --bs-border-radius-sm: 0;
+}
