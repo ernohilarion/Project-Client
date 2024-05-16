@@ -1,5 +1,5 @@
 import "./ErrorPage.css"
-import SOKOBAN from './../../assets/SOKOBAN.png'
+
 import { Link } from "react-router-dom"
 import { Button } from "react-bootstrap"
 

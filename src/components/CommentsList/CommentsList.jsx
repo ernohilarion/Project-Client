@@ -38,8 +38,10 @@ function CommentList({ comments, loadComments }) {
     const deleteComment = (commentId) => {
         axios.delete(`${apiURL}/actions/${commentId}`)
             .then(() => loadComments())
-            .catch(error => console.error(error))
-    }
+            .catch(error => console.error(error));
+    };
+
+
 
     return (
         <div className="CommentList">
@@ -68,7 +70,7 @@ function CommentList({ comments, loadComments }) {
                 </Modal.Footer>
             </Modal>
         </div>
-    )
+    );
 }
 
 export default CommentList;

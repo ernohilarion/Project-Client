@@ -24,7 +24,10 @@ const Sidebar = () => {
 
             <Offcanvas show={show} onHide={handleClose}>
                 <Offcanvas.Header closeButton>
-                    <Offcanvas.Title>DROP HIT</Offcanvas.Title>
+                    <Link to="/">
+                        <Offcanvas.Title>DROP HIT</Offcanvas.Title>
+                    </Link>
+
                 </Offcanvas.Header>
                 <SearchBar />
                 <Offcanvas.Body>
