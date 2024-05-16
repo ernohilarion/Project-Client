@@ -57,7 +57,7 @@ export default function AboutUs() {
                         <Card.Img variant="top" src={adri} />
                         <div className={`blueOverlayFour ${isHoveredBlockFour ? 'hovered' : ''}`}></div>
                         <div className="textOverlayBlockFour">
-                            <marquee direction="left"><h2><span>ADRIAN</span></h2></marquee>
+                            <marquee direction="left"><h2><span>ADRIAN ADRIAN</span></h2></marquee>
                         </div>
                         <Card.Body>
                             <Card.Title>Adrian Sobota</Card.Title>
