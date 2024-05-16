@@ -4,7 +4,7 @@
 .AboutUsPage {
     background-color: #ffffff;
     color: white;
-    padding-top: 20px;
+    padding-top: 4rem;
     padding-bottom: 50px;
 }
 
@@ -12,7 +12,6 @@
     width: 100%;
     object-fit: contain;
     height: 200px;
-
 }
 
 .about .card {
@@ -21,7 +20,6 @@
     margin: 10px auto;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
-
 
 .about .card .list-group-flush {
     text-align: center;
@@ -87,7 +85,6 @@
     font-size: 4em;
 }
 
-
 .blueOverlayFour {
     position: absolute;
     top: 0;
@@ -120,9 +117,7 @@
     color: white;
 }
 
-
-
-.blueOverlayThree {
+.blueOverlayFive {
     position: absolute;
     top: 0;
     left: 0;
@@ -135,12 +130,12 @@
     pointer-events: none;
 }
 
-.blueOverlayThree.hovered {
+.blueOverlayFive.hovered {
     opacity: 0;
     background-color: transparent;
 }
 
-.textOverlayBlockThree {
+.textOverlayBlockFive {
     color: white;
     font-family: "Poppins", sans-serif;
     position: absolute;
@@ -150,11 +145,9 @@
     z-index: 1;
 }
 
-.textOverlayBlockThree h2 {
+.textOverlayBlockFive h2 {
     color: white;
 }
-
-
 
 .no-gutters {
     margin-right: 0;
@@ -169,48 +162,32 @@
 
 .blockPhotoMatch {
     position: relative;
-    /* Establece el contexto de posicionamiento relativo para las imágenes */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* Centra verticalmente las imágenes */
-    margin-top: 300px;
-    /* Margen superior de 300px */
+    margin-top: 400px;
     margin-bottom: 300px;
-    /* Margen inferior de 300px */
 }
 
 .aboutUsPhotoOne {
     width: 600px;
-    /* Tamaño para la primera imagen */
     position: absolute;
-    /* Posiciona la imagen uno de forma absoluta */
     left: 0;
-    /* Coloca la imagen uno a la izquierda */
     z-index: 1;
-    /* Capa superior */
 }
 
 .aboutUsPhotoTwo {
     width: 550px;
-    /* Tamaño para la segunda imagen */
     position: absolute;
-    /* Posiciona la imagen dos de forma absoluta */
     right: 50%;
-    /* Coloca la imagen dos a la derecha */
     transform: translateX(50%);
-    /* Centra horizontalmente la imagen dos */
     z-index: 2;
-    margin-bottom: 100px;
 }
 
 .aboutUsPhotoThree {
     width: 500px;
     margin-top: 250px;
     position: absolute;
-    /* Posiciona la imagen tres de forma absoluta */
     right: 0;
-    /* Coloca la imagen tres a la derecha */
     z-index: 0;
-    /* Capa inferior */
 }

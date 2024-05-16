@@ -1,30 +1,6 @@
 import './HomePage.css'
-import coverapp from "./../../assets/coverapp.jpeg"
-import darkCover from "./../../assets/darkCover.gif"
-import BlockOne from "./../../assets/BlockOne.gif"
 import Carousel from 'react-bootstrap/Carousel'
 import Spinner from 'react-bootstrap/Spinner'
-import cov1 from "./../../assets/blockOneImages/cov1.jpg"
-import cov2 from "./../../assets/blockOneImages/cov2.jpg"
-import cov3 from "./../../assets/blockOneImages/cov3.jpg"
-import cov4 from "./../../assets/blockOneImages/cov4.jpg"
-import cov5 from "./../../assets/blockOneImages/cov5.jpg"
-import cov6 from "./../../assets/blockOneImages/cov6.jpg"
-import cov7 from "./../../assets/blockOneImages/cov7.jpeg"
-import cov8 from "./../../assets/blockOneImages/cov8.jpg"
-import cov9 from "./../../assets/blockOneImages/cov9.jpg"
-import cov10 from "./../../assets/blockOneImages/cov10.jpg"
-import cov11 from "./../../assets/blockOneImages/cov11.jpg"
-import cov12 from "./../../assets/blockOneImages/cov12.jpg"
-import cov13 from "./../../assets/blockOneImages/cov13.jpg"
-import cov14 from "./../../assets/blockOneImages/cov14.jpg"
-import cov15 from "./../../assets/blockOneImages/cov15.jpg"
-import cov16 from "./../../assets/blockOneImages/cov16.jpg"
-import cov17 from "./../../assets/blockOneImages/cov17.jpg"
-import cov18 from "./../../assets/blockOneImages/cov18.jpg"
-import cov19 from "./../../assets/blockOneImages/cov19.jpg"
-import cov20 from "./../../assets/blockOneImages/cov20.jpg"
-import badINTRO from "./../../assets/badINTRO.gif"
 import React, { useState } from 'react';
 
 import { Link } from 'react-router-dom'
@@ -215,7 +191,7 @@ function HomePage() {
                     onMouseLeave={() => setIsHoveredBlockOne(false)}>
                     <img src={"https://gyazo.com/d37169cbee4bc9841b49bf13113b610a.gif"} alt="Cover" className="gifCoverOne" />
                     <div className="textOverlayBlockone">
-                        <marquee direction="left"><h2><span>CHARLES GAMBINO</span></h2></marquee>
+                        <marquee direction="left"><h2><span>CHILDISH GAMBINO</span></h2></marquee>
                     </div>
                     <div
                         className={`blueOverlay ${isHoveredBlockOne ? 'hovered' : ''}`}
@@ -237,7 +213,7 @@ function HomePage() {
                 <div className='HomePageBlockThree'
                     onMouseEnter={() => setIsHoveredBlockThree(true)}
                     onMouseLeave={() => setIsHoveredBlockThree(false)}>
-                    <img src={"https://gyazo.com/bb79b2bd6fb04c269daae345657c2252.gif"} alt="Cover" className="gifCoverTwo" />
+                    <img src={"https://gyazo.com/bb79b2bd6fb04c269daae345657c2252.gif"} alt="Cover" className="gifCoverThree" />
                     <div className="textOverlayBlockThree">
                         <marquee direction="left"><h2><span>TYLER, THE CREATOR</span></h2></marquee>
                     </div>

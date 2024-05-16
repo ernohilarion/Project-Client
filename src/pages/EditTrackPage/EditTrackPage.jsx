@@ -8,7 +8,9 @@ function EditTrackPage() {
     return (
         <div className='EditTrackPage mt-5'>
             <Container>
-                <h1>Edit track</h1>
+                <marquee behavior="scroll" direction="left" className="marquee">
+                    EDIT-TRACK /EDIT-TRACK /EDIT-TRACK
+                </marquee>
                 <Row>
                     <Col md={{ span: 6, offset: 3 }}>
 

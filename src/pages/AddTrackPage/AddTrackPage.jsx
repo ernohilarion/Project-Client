@@ -7,7 +7,9 @@ function AddTrackPage() {
     return (
         <div className='AddTrackPage mt-5'>
             <Container>
-                <h1>New track</h1>
+                <marquee behavior="scroll" direction="left" className="marquee">
+                    NEW-TRACK /NEW-TRACK /NEW-TRACK
+                </marquee>
                 <Row>
                     <Col md={{ span: 6, offset: 3 }}>
 
