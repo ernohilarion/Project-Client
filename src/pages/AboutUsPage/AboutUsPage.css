@@ -47,3 +47,170 @@
 .mt-5 {
     margin-top: 0 !important;
 }
+
+.firstBlockAbout {
+    background-color: rgb(4, 0, 255);
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    padding-top: 200px;
+    padding-bottom: 200px;
+    box-sizing: border-box;
+}
+
+.secondBlockAbout {
+    background-color: rgb(4, 0, 255);
+    width: 100%;
+    margin-top: 20px;
+    margin-right: 600px;
+    margin-bottom: 50px;
+    padding: 150px 20px;
+    padding-right: 400px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+}
+
+.secondBlockAbout .content {
+    max-width: 800px;
+    color: white;
+}
+
+.firstBlockAbout h3 {
+    font-size: 2em;
+}
+
+.firstBlockAbout h1 {
+    font-size: 4em;
+}
+
+
+.blueOverlayFour {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 21, 255);
+    opacity: 0.5;
+    z-index: 2;
+    transition: opacity 1s ease;
+    pointer-events: none;
+}
+
+.blueOverlayFour.hovered {
+    opacity: 0;
+    background-color: transparent;
+}
+
+.textOverlayBlockFour {
+    color: white;
+    font-family: "Poppins", sans-serif;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.textOverlayBlockFour h2 {
+    color: white;
+}
+
+
+
+.blueOverlayThree {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 21, 255);
+    opacity: 0.5;
+    z-index: 2;
+    transition: opacity 1s ease;
+    pointer-events: none;
+}
+
+.blueOverlayThree.hovered {
+    opacity: 0;
+    background-color: transparent;
+}
+
+.textOverlayBlockThree {
+    color: white;
+    font-family: "Poppins", sans-serif;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.textOverlayBlockThree h2 {
+    color: white;
+}
+
+
+
+.no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.no-gutters>.col,
+.no-gutters>[class*="col-"] {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.blockPhotoMatch {
+    position: relative;
+    /* Establece el contexto de posicionamiento relativo para las imágenes */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Centra verticalmente las imágenes */
+    margin-top: 300px;
+    /* Margen superior de 300px */
+    margin-bottom: 300px;
+    /* Margen inferior de 300px */
+}
+
+.aboutUsPhotoOne {
+    width: 600px;
+    /* Tamaño para la primera imagen */
+    position: absolute;
+    /* Posiciona la imagen uno de forma absoluta */
+    left: 0;
+    /* Coloca la imagen uno a la izquierda */
+    z-index: 1;
+    /* Capa superior */
+}
+
+.aboutUsPhotoTwo {
+    width: 550px;
+    /* Tamaño para la segunda imagen */
+    position: absolute;
+    /* Posiciona la imagen dos de forma absoluta */
+    right: 50%;
+    /* Coloca la imagen dos a la derecha */
+    transform: translateX(50%);
+    /* Centra horizontalmente la imagen dos */
+    z-index: 2;
+    margin-bottom: 100px;
+}
+
+.aboutUsPhotoThree {
+    width: 500px;
+    margin-top: 250px;
+    position: absolute;
+    /* Posiciona la imagen tres de forma absoluta */
+    right: 0;
+    /* Coloca la imagen tres a la derecha */
+    z-index: 0;
+    /* Capa inferior */
+}

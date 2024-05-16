@@ -8,7 +8,7 @@ const TrackCard = ({ id, title, artist, cover }) => {
                 <img src={cover} alt={title} />
                 <div>
                     <h4>{title}</h4>
-                    <h6>{artist}</h6>
+                    <h4>{artist}</h4>
                 </div>
             </Link>
         </div>
