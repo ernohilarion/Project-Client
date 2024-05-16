@@ -1,0 +1,10 @@
+.editDeleteButtons {
+    display: flex;
+    gap: 10px;
+
+}
+
+.editDeleteButtons button {
+    border-radius: 0;
+
+}

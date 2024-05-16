@@ -43,3 +43,26 @@
 .row {
     margin-bottom: 1rem;
 }
+
+.CommentList li {
+    background-color: rgba(0, 0, 0, 0.054);
+    margin: 20px
+}
+
+.CommentList button {
+    background-color: rgb(255, 0, 0);
+    margin: 10px
+}
+
+.btn,
+.btn-sm {
+    --bs-btn-padding-y: 0.25rem;
+    --bs-btn-padding-x: 0.5rem;
+    --bs-btn-font-size: 0.875rem;
+
+}
+
+:root {
+
+    --bs-border-radius-sm: 0;
+}
