@@ -16,7 +16,7 @@ function CommentList({ comments, loadComments }) {
         const commentToEdit = comments.find(comment => comment.id === commentId);
         setEditedComment(commentToEdit.comment);
         setShowModal(true);
-    };
+    }
 
     const saveEditedComment = () => {
         axios.put(`${apiURL}/actions/${editCommentId}`, {
@@ -30,47 +30,45 @@ function CommentList({ comments, loadComments }) {
                 loadComments();
                 setShowModal(false);
             })
-            .catch(err => console.log(err));
-    };
+            .catch(err => console.log(err))
+    }
 
 
 
     const deleteComment = (commentId) => {
         axios.delete(`${apiURL}/actions/${commentId}`)
             .then(() => loadComments())
-            .catch(error => console.error(error));
-    };
-            .catch (error => console.error(error));
-};
+            .catch(error => console.error(error))
+    }
 
-return (
-    <div className="CommentList">
-        <h3>Comments</h3>
-        <ul>
-            {comments.map((comment) => (
-                <li key={comment.id}>
-                    {comment.comment}
-                    <div className="editDeleteButtons">
-                        <Button variant="danger" size="sm" onClick={() => deleteComment(comment.id)}>Delete</Button>
-                        <Button variant="danger" size="sm" onClick={() => handleEditComment(comment.id)}>Edit</Button>
-                    </div>
-                </li>
-            ))}
-        </ul>
-        <Modal show={showModal} onHide={() => setShowModal(false)}>
-            <Modal.Header closeButton>
-                <Modal.Title>Edit Comment</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <textarea value={editedComment} onChange={(e) => setEditedComment(e.target.value)} />
-            </Modal.Body>
-            <Modal.Footer>
-                <Button variant="secondary" onClick={() => setShowModal(false)}>Close</Button>
-                <Button variant="primary" onClick={saveEditedComment}>Save changes</Button>
-            </Modal.Footer>
-        </Modal>
-    </div>
-);
+    return (
+        <div className="CommentList">
+            <h3>Comments</h3>
+            <ul>
+                {comments.map((comment) => (
+                    <li key={comment.id}>
+                        {comment.comment}
+                        <div className="editDeleteButtons">
+                            <Button variant="danger" size="sm" onClick={() => deleteComment(comment.id)}>Delete</Button>
+                            <Button variant="danger" size="sm" onClick={() => handleEditComment(comment.id)}>Edit</Button>
+                        </div>
+                    </li>
+                ))}
+            </ul>
+            <Modal show={showModal} onHide={() => setShowModal(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Edit Comment</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <textarea value={editedComment} onChange={(e) => setEditedComment(e.target.value)} />
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShowModal(false)}>Close</Button>
+                    <Button variant="primary" onClick={saveEditedComment}>Save changes</Button>
+                </Modal.Footer>
+            </Modal>
+        </div>
+    )
 }
 
 export default CommentList;

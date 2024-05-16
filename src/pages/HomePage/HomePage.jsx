@@ -1,9 +1,5 @@
 import './HomePage.css'
 import coverapp from "./../../assets/coverapp.jpeg"
-<<<<<<< HEAD
-import badgif from './../../assets/test.gif'
-import { Carousel } from 'react-bootstrap'
-=======
 import darkCover from "./../../assets/darkCover.gif"
 import BlockOne from "./../../assets/BlockOne.gif"
 import Carousel from 'react-bootstrap/Carousel'
@@ -17,7 +13,6 @@ import cov6 from "./../../assets/cov6.jpg"
 import badINTRO from "./../../assets/badINTRO.gif"
 import React, { useState } from 'react';
 
->>>>>>> f62bcc7e78e44eb26d70caa61f6c24f92bcbcb42
 
 function HomePage() {
 
@@ -79,23 +74,6 @@ function HomePage() {
 
             </Carousel>
 
-            {/* <div className='HomePageBlockone blueOverlay'>
-                <img src={darkCover} alt="Cover" className="coverImage" />
-            </div> */}
-
-
-            {/* <div className='blueOverlay'>
-                
-                <div
-                    className={`HomePageBlockone ${isHovered ? '' : 'blueOverlay'}`}
-                    onMouseEnter={() => setIsHovered(true)}
-                    onMouseLeave={() => setIsHovered(false)}
-                >
-                    <img src={darkCover} alt="Cover" className="gifCoverOne" />
-                </div>
-            </div> */}
-
-
             <div className='HomePageBlockone'
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}>
@@ -132,12 +110,6 @@ function HomePage() {
 
 
 
-<<<<<<< HEAD
-        <div className='HomePage'>
-            <img src={badgif} alt="Cover" className="coverImage" />
-            <marquee direction="left"><h2><strong>DROP HIT</strong></h2></marquee>
-=======
->>>>>>> f62bcc7e78e44eb26d70caa61f6c24f92bcbcb42
         </div>
     );
 }
