@@ -1,15 +1,13 @@
 .footer {
     color: rgb(0, 0, 0);
     backdrop-filter: blur(6px);
-    /* background-color: #00000000 !important;
-    background-color: var(--_1wkks6v1); */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     min-height: 742px;
     position: relative;
     width: 100%;
-    background-color: blue;
+    background-color: #000dff;
 }
 
 .footer-columns {
@@ -28,4 +26,8 @@
 
 .footer-list li {
     margin-bottom: 5px;
+}
+
+.footerRights {
+    color: white;
 }

@@ -1,9 +1,6 @@
 import { Container, Row, Col, Card, ListGroup } from "react-bootstrap";
 import "./AboutUsPage.css";
 import { useState } from 'react';
-import cov1 from "./../../assets/blockOneImages/cov1.jpg"
-import cov2 from "./../../assets/blockOneImages/cov2.jpg"
-import cov3 from "./../../assets/blockOneImages/cov3.jpg"
 import adri from "./../../assets/adri.gif"
 import erno from "./../../assets/erno.gif"
 export default function AboutUs() {
@@ -44,7 +41,7 @@ export default function AboutUs() {
                             <Card.Body>
                                 <Card.Title>Ernesto Hilarión</Card.Title>
                                 <Card.Text>
-                                    Hello! I'm Erno, a passionate Full Stack Developer currently honing my skills at IronHack...blabablbaba
+                                    Hello, my name is Erno, and I am a passionate programming student at IronHack. My favorite part is designing and creating products that have soul and character. Functionality must go hand in hand with UX/UI.
                                 </Card.Text>
                             </Card.Body>
                             <ListGroup className="list-group-flush">
@@ -65,7 +62,7 @@ export default function AboutUs() {
                             <Card.Body>
                                 <Card.Title>Adrian Sobota</Card.Title>
                                 <Card.Text>
-                                    Hi, I'm Adri, a dedicated Full Stack Developer specializing in JavaScript...blablablabab
+                                    Hey! I'm Adri, I've always wanted to be a Full Stack Developer! I believe that products should be free, open, and accessible to everyone; no one should be left out. I am currently at IronHack Madrid to refine my knowledge and become a great professional.
                                 </Card.Text>
                             </Card.Body>
                             <ListGroup className="list-group-flush">

@@ -1,6 +1,3 @@
-import AboutUsPage from '../../pages/AboutUsPage/AboutUsPage'
-import AllTracksPage from '../../pages/AllTracksPage/AllTracksPage'
-import LikedTracksPage from '../../pages/LikedTracksPage/LikedTracksPage'
 import './Sidebar.css'
 import navIcon from '../../assets/navIcon.png'
 import { Link } from 'react-router-dom'

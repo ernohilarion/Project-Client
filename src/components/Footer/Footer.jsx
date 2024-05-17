@@ -29,7 +29,7 @@ function Footer() {
 
 
 
-            <div>
+            <div className='footerRights'>
                 <p className="text-center mt-4 mb-4">All rights reserved 2024©</p>
             </div>
         </footer>

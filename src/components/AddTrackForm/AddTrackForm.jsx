@@ -41,7 +41,7 @@ const AddTracksForm = () => {
 
         console.log('CONVIERTE ESTO', value, 'EN UN ARRAY SEPARADO POR LAS COMAS')
 
-        let genresArray = value.split(',')   // <= work here
+        let genresArray = value.split(',')
 
         setTrackData({ ...trackData, genres: genresArray })
     }

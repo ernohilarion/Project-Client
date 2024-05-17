@@ -185,7 +185,7 @@ function HomePage() {
 
 
 
-            <div>
+            <div className='HomePageBlocks'>
                 <div className='HomePageBlockone'
                     onMouseEnter={() => setIsHoveredBlockOne(true)}
                     onMouseLeave={() => setIsHoveredBlockOne(false)}>
